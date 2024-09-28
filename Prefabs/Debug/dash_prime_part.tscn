@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsuq4explmn2a"]
+[gd_scene load_steps=4 format=3 uid="uid://dxr3jv2xnd0w0"]
 
 [ext_resource type="Script" path="res://Scripts/Dash Prime Part.gd" id="1_oeaau"]
-[ext_resource type="Texture2D" path="res://Art/Misc/Debug/Prime Part Dash Debug.png" id="2_odlwj"]
+[ext_resource type="Texture2D" uid="uid://211lvjvt1c4a" path="res://Art/Misc/Debug/Prime Part Dash Debug.png" id="2_odlwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
