@@ -3,11 +3,11 @@ extends CharacterBody2D
 
 @export_category("Movement Parameters")
 @export var maxSpeed: float = 400.0
-@export var acceleration: float = 800.0
-@export var jump_speed: float = -800.0
+@export var acceleration: float = 1200.0
+@export var jumpSpeed: float = -600.0
 @export var airMaxSpeedMod: int = 2
-@export var frictionMod: float = 800.0
-@export var maxSpeedDecel: float = 1000
+@export var frictionMod: float = 1200.0
+@export var maxSpeedDecel: float = 1400
 @export var jumpBufferTime: float = 0.1
 @export var maxJumpsAvailable: int = 1
 @export var maxGrappleLength: float = 900.0
@@ -117,19 +117,12 @@ func _physics_process(delta: float) -> void:
 		isHooked = false
 		isHookFlying = false
 		
-	
-	print(isHookReady)
-	
-	print(isHookReturning)
-	
-	print(isHooked)
-	
-	print(isHookFlying)
 	move_and_slide()
 	
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+		print(collision.get_collider().name)
 		if collision.get_collider().name == "Charger":
 			if velocity.x == 0 and battery < maxBattery:
 				battery += 100 * delta
@@ -137,7 +130,7 @@ func _physics_process(delta: float) -> void:
 					battery = maxBattery
 					
 func Jump()-> void:
-	velocity.y = jump_speed
+	velocity.y = jumpSpeed
 	battery -= 1.5
 	jumpsAvailable -= 1
 	
@@ -186,3 +179,8 @@ func Get_Hook_Pos():
 func On_Jump_Buffer_Timeout() -> void:
 	jumpBuffer = false
 	
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.has_method("OnPickup"):
+		area.OnPickup(self)

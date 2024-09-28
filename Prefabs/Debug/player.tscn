@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpa7wun6uuoyc"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_dbbsw"]
+[ext_resource type="Texture2D" uid="uid://bnfgrlpcewy7w" path="res://Art/Character/Debug/Player-Debug.png" id="2_3s33j"]
+[ext_resource type="Script" path="res://Scripts/MaxBatteryBar.gd" id="3_hjca7"]
+[ext_resource type="Script" path="res://Scripts/BatteryBar.gd" id="4_rj5qj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wefj"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(280, 185)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_dbbsw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6.4, 6.4)
+shape = SubResource("RectangleShape2D_a58jo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3s33j")
+
+[node name="GrapplingHook" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+
+[node name="Rope" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -64)
+
+[node name="BatteryMax" type="ColorRect" parent="Camera2D"]
+z_index = 99
+offset_left = -1500.0
+offset_top = -920.0
+offset_right = -1000.0
+offset_bottom = -820.0
+color = Color(0, 0.299941, 0.561121, 1)
+script = ExtResource("3_hjca7")
+
+[node name="Battery" type="ColorRect" parent="Camera2D"]
+z_index = 100
+offset_left = -1500.0
+offset_top = -920.0
+offset_right = -1100.0
+offset_bottom = -820.0
+color = Color(0.536697, 0.972733, 1, 1)
+script = ExtResource("4_rj5qj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(6.4, 6.4)
+shape = SubResource("RectangleShape2D_8wefj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

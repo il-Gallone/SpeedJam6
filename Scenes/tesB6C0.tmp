@@ -3,11 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://cpa7wun6uuoyc" path="res://Prefabs/Debug/player.tscn" id="1_oeaab"]
 [ext_resource type="Texture2D" uid="uid://mrj1m2v5ituo" path="res://Art/Platforms/Debug/Basic Platform-Debug.png" id="2_3h4ju"]
 [ext_resource type="PackedScene" uid="uid://d11wkxool2ak6" path="res://Prefabs/Debug/charger.tscn" id="3_apotg"]
-[ext_resource type="PackedScene" uid="uid://boojp04ggg7c" path="res://Prefabs/Debug/speed_part.tscn" id="4_wam0b"]
-[ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="5_i3wls"]
-[ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="6_p7h2n"]
+[ext_resource type="Script" path="res://Scripts/Speed Part.gd" id="4_5l074"]
+[ext_resource type="Texture2D" uid="uid://ddtyntmeg08kd" path="res://Art/Misc/Debug/Speed Collectable-Debug.png" id="5_jucxc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ra8o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
 [node name="Test Scene" type="Node2D"]
 
@@ -37,11 +38,14 @@ texture = ExtResource("2_3h4ju")
 
 [node name="Charger" parent="." instance=ExtResource("3_apotg")]
 
-[node name="Speed Part" parent="." instance=ExtResource("4_wam0b")]
+[node name="Speed Part" type="Area2D" parent="."]
 position = Vector2(0, 800)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("4_5l074")
 
-[node name="Battery Part" parent="." instance=ExtResource("5_i3wls")]
-position = Vector2(1204, 93)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Speed Part"]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_xny8t")
 
-[node name="Jump Part" parent="." instance=ExtResource("6_p7h2n")]
-position = Vector2(804, 670)
+[node name="Sprite2D" type="Sprite2D" parent="Speed Part"]
+texture = ExtResource("5_jucxc")
