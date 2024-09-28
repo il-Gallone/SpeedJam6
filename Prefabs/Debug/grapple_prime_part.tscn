@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://danq4o7e71pi5"]
+
+[ext_resource type="Script" path="res://Scripts/Grapple Prime Part.gd" id="1_ptoh8"]
+[ext_resource type="Texture2D" path="res://Art/Misc/Debug/Prime Part Grapple Debug.png" id="2_4tt27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
+
+[node name="Grapple Prime Part" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ptoh8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_xny8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4tt27")

@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckeb03r4xo6sy"]
+
+[ext_resource type="PackedScene" uid="uid://cpa7wun6uuoyc" path="res://Prefabs/Debug/player.tscn" id="1_0gmqe"]
+[ext_resource type="Texture2D" uid="uid://mrj1m2v5ituo" path="res://Art/Platforms/Debug/Basic Platform-Debug.png" id="2_1bwqd"]
+[ext_resource type="PackedScene" uid="uid://d11wkxool2ak6" path="res://Prefabs/Debug/charger.tscn" id="3_x0q75"]
+[ext_resource type="PackedScene" uid="uid://boojp04ggg7c" path="res://Prefabs/Debug/speed_part.tscn" id="4_winbn"]
+[ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="5_qjlet"]
+[ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="6_ta4sf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ra8o"]
+
+[node name="Level Example" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_0gmqe")]
+position = Vector2(800, 747)
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(148, -21)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(-162, 95)
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+position = Vector2(-162, 95)
+texture = ExtResource("2_1bwqd")
+
+[node name="Platform5" type="StaticBody2D" parent="."]
+position = Vector2(1073, 211)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform5"]
+position = Vector2(-396, 422)
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform5"]
+position = Vector2(-396, 422)
+texture = ExtResource("2_1bwqd")
+
+[node name="Platform3" type="StaticBody2D" parent="."]
+position = Vector2(1942, 779)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+position = Vector2(-292, -7)
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform3"]
+position = Vector2(-292, -7)
+texture = ExtResource("2_1bwqd")
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(1282, 75)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+position = Vector2(1730, 122)
+rotation = -1.5708
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform2"]
+position = Vector2(1732, 122)
+rotation = 1.5708
+texture = ExtResource("2_1bwqd")
+
+[node name="Platform4" type="StaticBody2D" parent="."]
+position = Vector2(6038, 250)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
+position = Vector2(2258, -52)
+rotation = -1.5708
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform4"]
+position = Vector2(2260, -52)
+rotation = 1.5708
+texture = ExtResource("2_1bwqd")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(800, 900)
+scale = Vector2(10, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("2_1bwqd")
+
+[node name="Charger" parent="." instance=ExtResource("3_x0q75")]
+
+[node name="Speed Part" parent="." instance=ExtResource("4_winbn")]
+position = Vector2(604, 208)
+
+[node name="Battery Part" parent="." instance=ExtResource("5_qjlet")]
+position = Vector2(1533, 208)
+
+[node name="Jump Part" parent="." instance=ExtResource("6_ta4sf")]
+position = Vector2(149, 775)
