@@ -48,6 +48,8 @@ func _physics_process(delta: float) -> void:
 		Dash(delta)
 	else:
 		var accelDir = Input.get_axis("ui_left", "ui_right")
+		if dashCD > 0:
+			dashCD -= delta
 		velocity.y += gravity * delta
 		if accelDir != 0:
 			if !isHookFlying:
@@ -109,7 +111,7 @@ func _physics_process(delta: float) -> void:
 		elif isHookReturning:
 			HookReturn(delta)
 			
-		if Input.is_action_just_pressed("dash") and dashesAvailable and !isDashing:
+		if Input.is_action_just_pressed("dash") and dashesAvailable and dashCD <= 0:
 			if !isHookFlying and !isHooked:
 				battery -= 3
 				dashCD = dashTime
@@ -153,6 +155,7 @@ func Dash(delta)-> void:
 	dashCD -= delta
 	if dashCD <= 0:
 		isDashing = false
+		dashCD = 0.5
 	
 	
 func HookExtend(delta):
