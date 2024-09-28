@@ -2,15 +2,15 @@ extends CharacterBody2D
 
 
 @export_category("Movement Parameters")
-@export var maxSpeed: float = 150.0
-@export var acceleration: float = 150.0
-@export var jump_speed: float = -400.0
-@export var airMaxSpeedMod: int = 3
-@export var frictionMod: float = 300.0
-@export var maxSpeedDecel: float = 12.5
+@export var maxSpeed: float = 400.0
+@export var acceleration: float = 800.0
+@export var jump_speed: float = -800.0
+@export var airMaxSpeedMod: int = 2
+@export var frictionMod: float = 800.0
+@export var maxSpeedDecel: float = 1000
 @export var jumpBufferTime: float = 0.1
 @export var maxJumpsAvailable: int = 1
-@export var maxGrappleLength: float = 800.0
+@export var maxGrappleLength: float = 900.0
 
 
 var maxBattery: float = 500.0
@@ -142,7 +142,7 @@ func Jump()-> void:
 	jumpsAvailable -= 1
 	
 func HookExtend(delta):
-	$GrapplingHook.target_position += Vector2(4000*hookDir, -4000)*delta
+	$GrapplingHook.target_position += Vector2(6000*hookDir, -6000)*delta
 	if $GrapplingHook.target_position.y < -maxGrappleLength:
 		$GrapplingHook.target_position = Vector2(maxGrappleLength*hookDir, -maxGrappleLength)
 		isHookFlying = false
@@ -167,7 +167,7 @@ func HookReturn(delta):
 	$Rope.remove_point(1)
 	$Rope.add_point($GrapplingHook.target_position)
 	
-func HookSwing(delta):
+func HookSwing(_delta):
 	var radius = global_position - hookPos
 	var angle = acos(radius.dot(velocity) / (radius.length() * velocity.length()))
 	var radVel = cos(angle) * velocity.length()

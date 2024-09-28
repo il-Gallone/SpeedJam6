@@ -27,7 +27,6 @@ shape = SubResource("RectangleShape2D_a58jo")
 texture = ExtResource("1_1axl6")
 
 [node name="GrapplingHook" type="RayCast2D" parent="Player"]
-scale = Vector2(1, 1)
 target_position = Vector2(0, 0)
 
 [node name="Rope" type="Line2D" parent="Player"]
