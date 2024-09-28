@@ -30,13 +30,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	
-	if Input.is_action_just_pressed("jump"):
-		if jumpsAvailable > 0:
-			Jump()
-		else:
-			jumpBuffer = true
-			get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
-		
 		
 	var accelDir = Input.get_axis("ui_left", "ui_right")
 	if accelDir != 0:
@@ -44,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		jumpsAvailable = maxJumpsAvailable
+		print(jumpsAvailable)
 		if jumpBuffer:
 			Jump()
 			jumpBuffer = false
@@ -90,6 +84,13 @@ func _physics_process(delta: float) -> void:
 			if velocity.x <= -maxSpeed * airMaxSpeedMod:
 				velocity.x = -maxSpeed * airMaxSpeedMod
 		
+	
+	if Input.is_action_just_pressed("jump"):
+		if jumpsAvailable > 0:
+			Jump()
+		else:
+			jumpBuffer = true
+			get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
 		
 	move_and_slide()
 	
@@ -105,6 +106,7 @@ func Jump()-> void:
 	velocity.y = jump_speed
 	battery -= 1.5
 	jumpsAvailable -= 1
+	print(jumpsAvailable)
 	
 func On_Jump_Buffer_Timeout() -> void:
 	jumpBuffer = false
