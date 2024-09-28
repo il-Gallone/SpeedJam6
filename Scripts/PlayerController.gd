@@ -135,7 +135,7 @@ func Jump()-> void:
 	jumpsAvailable -= 1
 	
 func HookExtend(delta):
-	$GrapplingHook.target_position += Vector2(6000*hookDir, -6000)*delta
+	$GrapplingHook.target_position += Vector2(5500*hookDir, -5500)*delta
 	if $GrapplingHook.target_position.y < -maxGrappleLength:
 		$GrapplingHook.target_position = Vector2(maxGrappleLength*hookDir, -maxGrappleLength)
 		isHookFlying = false
