@@ -9,11 +9,14 @@ extends CharacterBody2D
 @export var frictionMod: float = 300.0
 @export var maxSpeedDecel: float = 12.5
 @export var jumpBufferTime: float = 0.1
+@export var maxJumpsAvailable: int = 1
+
 
 var maxBattery: float = 500.0
 var battery: float = 500.0
 
 var jumpBuffer:bool = false
+var jumpsAvailable:int = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -27,9 +30,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y += jump_speed
-		battery -= 1.5
+	if Input.is_action_just_pressed("jump"):
+		if jumpsAvailable > 0:
+			Jump()
+		else:
+			jumpBuffer = true
+			get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
 		
 		
 	var accelDir = Input.get_axis("ui_left", "ui_right")
@@ -37,6 +43,10 @@ func _physics_process(delta: float) -> void:
 		battery -= 1 * delta
 	
 	if is_on_floor():
+		jumpsAvailable = maxJumpsAvailable
+		if jumpBuffer:
+			Jump()
+			jumpBuffer = false
 		if accelDir == 0:
 			if velocity.x < 0:
 				velocity.x += frictionMod * delta
@@ -90,4 +100,12 @@ func _physics_process(delta: float) -> void:
 				battery += 100 * delta
 				if battery > maxBattery:
 					battery = maxBattery
+					
+func Jump()-> void:
+	velocity.y += jump_speed
+	battery -= 1.5
+	jumpsAvailable -= 1
+	
+func On_Jump_Buffer_Timeout() -> void:
+	jumpBuffer = false
 	
