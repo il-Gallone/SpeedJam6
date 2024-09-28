@@ -23,6 +23,7 @@ var hookPos
 var isHookFlying: bool = false
 var isHooked: bool = false
 var isHookReturning: bool = false
+var isHookReady: bool = true
 var hookRopeLength: float = 0.0
 var hookDir:int = 1
 
@@ -37,12 +38,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
-	
 		
 	var accelDir = Input.get_axis("ui_left", "ui_right")
 	if accelDir != 0:
 		if !isHookFlying:
-			hookDir = accelDir
+			hookDir = int(accelDir)
 		battery -= 1 * delta
 	
 	if is_on_floor():
@@ -92,14 +92,14 @@ func _physics_process(delta: float) -> void:
 				velocity.x = maxSpeed * airMaxSpeedMod
 			if velocity.x <= -maxSpeed * airMaxSpeedMod:
 				velocity.x = -maxSpeed * airMaxSpeedMod
-	if isHookReturning:
-		HookReturn(delta)
+		
+		
+	if isHookFlying:
+		HookExtend(delta)
 	elif isHooked:
 		HookSwing(delta)
-	elif isHookFlying:
-		HookExtend(delta)
-		
-		
+	elif isHookReturning:
+		HookReturn(delta)
 	
 	if Input.is_action_just_pressed("jump"):
 		if jumpsAvailable > 0:
@@ -108,15 +108,25 @@ func _physics_process(delta: float) -> void:
 			jumpBuffer = true
 			get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
 			
-	if Input.is_action_just_pressed("grapple") && !isHookFlying && !isHookReturning:
+	if Input.is_action_just_pressed("grapple") && isHookReady:
 		isHookFlying = true
+		isHookReady = false
 		
-	if Input.is_action_just_released("grapple") && !isHookReturning:
+	if !Input.is_action_pressed("grapple") && !isHookReturning:
 		isHookReturning = true
 		isHooked = false
 		isHookFlying = false
 		
+	
+	print(isHookReady)
+	
+	print(isHookReturning)
+	
+	print(isHooked)
+	
+	print(isHookFlying)
 	move_and_slide()
+	
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -144,12 +154,16 @@ func HookExtend(delta):
 	if hookPos:
 		isHookFlying = false
 		isHooked = true
+		isHookReturning = false
 		
 func HookReturn(delta):
 	$GrapplingHook.target_position -= $GrapplingHook.target_position.normalized()*5000*delta
 	if $GrapplingHook.target_position.y > 0:
 		$GrapplingHook.target_position = Vector2(0, 0)
+		isHookFlying = false
+		isHooked = false
 		isHookReturning = false
+		isHookReady= true
 	$Rope.remove_point(1)
 	$Rope.add_point($GrapplingHook.target_position)
 	
