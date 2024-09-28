@@ -1,15 +1,19 @@
 extends CharacterBody2D
 
 
-var maxSpeed = 150.0
-var acceleration = 150.0
-var jump_speed = -400.0
-var airMaxSpeedMod = 3
-var frictionMod = 300.0
-var maxSpeedDecel = 12.5
+@export_category("Movement Parameters")
+@export var maxSpeed: float = 150.0
+@export var acceleration: float = 150.0
+@export var jump_speed: float = -400.0
+@export var airMaxSpeedMod: int = 3
+@export var frictionMod: float = 300.0
+@export var maxSpeedDecel: float = 12.5
+@export var jumpBufferTime: float = 0.1
 
-var maxBattery = 500.0
-var battery = 500.0
+var maxBattery: float = 500.0
+var battery: float = 500.0
+
+var jumpBuffer:bool = false
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
