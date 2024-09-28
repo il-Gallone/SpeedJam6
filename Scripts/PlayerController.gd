@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var maxSpeedDecel: float = 12.5
 @export var jumpBufferTime: float = 0.1
 @export var maxJumpsAvailable: int = 1
+@export var maxGrappleLength: float = 800.0
 
 
 var maxBattery: float = 500.0
@@ -17,6 +18,13 @@ var battery: float = 500.0
 
 var jumpBuffer:bool = false
 var jumpsAvailable:int = 1
+
+var hookPos
+var isHookFlying: bool = false
+var isHooked: bool = false
+var isHookReturning: bool = false
+var hookRopeLength: float = 0.0
+var hookDir:int = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -33,11 +41,12 @@ func _physics_process(delta: float) -> void:
 		
 	var accelDir = Input.get_axis("ui_left", "ui_right")
 	if accelDir != 0:
+		if !isHookFlying:
+			hookDir = accelDir
 		battery -= 1 * delta
 	
 	if is_on_floor():
 		jumpsAvailable = maxJumpsAvailable
-		print(jumpsAvailable)
 		if jumpBuffer:
 			Jump()
 			jumpBuffer = false
@@ -83,6 +92,13 @@ func _physics_process(delta: float) -> void:
 				velocity.x = maxSpeed * airMaxSpeedMod
 			if velocity.x <= -maxSpeed * airMaxSpeedMod:
 				velocity.x = -maxSpeed * airMaxSpeedMod
+	if isHookReturning:
+		HookReturn(delta)
+	elif isHooked:
+		HookSwing(delta)
+	elif isHookFlying:
+		HookExtend(delta)
+		
 		
 	
 	if Input.is_action_just_pressed("jump"):
@@ -91,6 +107,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			jumpBuffer = true
 			get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
+			
+	if Input.is_action_just_pressed("grapple") && !isHookFlying && !isHookReturning:
+		isHookFlying = true
+		
+	if Input.is_action_just_released("grapple") && !isHookReturning:
+		isHookReturning = true
+		isHooked = false
+		isHookFlying = false
 		
 	move_and_slide()
 	
@@ -106,7 +130,44 @@ func Jump()-> void:
 	velocity.y = jump_speed
 	battery -= 1.5
 	jumpsAvailable -= 1
-	print(jumpsAvailable)
+	
+func HookExtend(delta):
+	$GrapplingHook.target_position += Vector2(4000*hookDir, -4000)*delta
+	if $GrapplingHook.target_position.y < -maxGrappleLength:
+		$GrapplingHook.target_position = Vector2(maxGrappleLength*hookDir, -maxGrappleLength)
+		isHookFlying = false
+	$Rope.remove_point(1)
+	$Rope.add_point($GrapplingHook.target_position)
+	hookPos = Get_Hook_Pos()
+	if !hookPos and !isHookFlying:
+		isHookReturning = true
+	if hookPos:
+		isHookFlying = false
+		isHooked = true
+		
+func HookReturn(delta):
+	$GrapplingHook.target_position -= $GrapplingHook.target_position.normalized()*5000*delta
+	if $GrapplingHook.target_position.y > 0:
+		$GrapplingHook.target_position = Vector2(0, 0)
+		isHookReturning = false
+	$Rope.remove_point(1)
+	$Rope.add_point($GrapplingHook.target_position)
+	
+func HookSwing(delta):
+	var radius = global_position - hookPos
+	var angle = acos(radius.dot(velocity) / (radius.length() * velocity.length()))
+	var radVel = cos(angle) * velocity.length()
+	velocity += radius.normalized() * -radVel
+	$GrapplingHook.target_position = to_local(hookPos)
+	$Rope.remove_point(1)
+	$Rope.add_point($GrapplingHook.target_position)
+	
+	
+func Get_Hook_Pos():
+	if $GrapplingHook.is_colliding():
+		return $GrapplingHook.get_collision_point()
+	else:
+		return false
 	
 func On_Jump_Buffer_Timeout() -> void:
 	jumpBuffer = false

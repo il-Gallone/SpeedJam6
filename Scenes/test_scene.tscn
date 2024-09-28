@@ -17,6 +17,7 @@
 position = Vector2(280, 185)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_857tp")
+jump_speed = -600.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(6.4, 6.4)
@@ -24,6 +25,14 @@ shape = SubResource("RectangleShape2D_a58jo")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("1_1axl6")
+
+[node name="GrapplingHook" type="RayCast2D" parent="Player"]
+scale = Vector2(1, 1)
+target_position = Vector2(0, 0)
+
+[node name="Rope" type="Line2D" parent="Player"]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -64)
@@ -43,6 +52,17 @@ offset_right = -1100.0
 offset_bottom = -820.0
 color = Color(0.536697, 0.972733, 1, 1)
 script = ExtResource("4_xb04w")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(1200, 200)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+texture = ExtResource("2_3h4ju")
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(800, 900)
