@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var jumpBufferTime: float = 0.1
 @export var maxJumpsAvailable: int = 1
 @export var maxGrappleLength: float = 900.0
+@export var dashTime: float = 0.2
 
 
 var maxBattery: float = 500.0
@@ -19,13 +20,18 @@ var battery: float = 500.0
 var jumpBuffer:bool = false
 var jumpsAvailable:int = 1
 
+var isDashing = false
+var dashesAvailable = false
+var dashCD: float = 0
+
+var facingDir:int = 1
+
 var hookPos
 var isHookFlying: bool = false
 var isHooked: bool = false
 var isHookReturning: bool = false
-var isHookReady: bool = true
+var isHookReady: bool = false
 var hookRopeLength: float = 0.0
-var hookDir:int = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -37,92 +43,99 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	velocity.y += gravity * delta
-		
-	var accelDir = Input.get_axis("ui_left", "ui_right")
-	if accelDir != 0:
-		if !isHookFlying:
-			hookDir = int(accelDir)
-		battery -= 1 * delta
 	
-	if is_on_floor():
-		jumpsAvailable = maxJumpsAvailable
-		if jumpBuffer:
-			Jump()
-			jumpBuffer = false
-		if accelDir == 0:
-			if velocity.x < 0:
-				velocity.x += frictionMod * delta
-				if velocity.x > 0:
-					velocity.x  = 0
-			if velocity.x > 0:
-				velocity.x -= frictionMod * delta
-				if velocity.x < 0:
-					velocity.x  = 0
-		if velocity.x > maxSpeed:
-			velocity.x -= maxSpeedDecel * delta
-			if accelDir < 0:
-				velocity.x += acceleration * accelDir * delta
-		elif velocity.x < -maxSpeed:
-			velocity.x += maxSpeedDecel * delta
-			if accelDir > 0:
-				velocity.x += acceleration * accelDir * delta
-		else:
-			velocity.x += acceleration * accelDir * delta
-			if velocity.x > 0 and accelDir < 0:
-				velocity.x -= frictionMod * delta
-			if velocity.x < 0 and accelDir > 0:
-				velocity.x += frictionMod * delta
-			if velocity.x >= maxSpeed:
-				velocity.x = maxSpeed
-			if velocity.x <= -maxSpeed:
-				velocity.x = -maxSpeed
+	if isDashing:
+		Dash(delta)
 	else:
-		if velocity.x > maxSpeed * airMaxSpeedMod:
-			velocity.x -= maxSpeedDecel * delta
-			if accelDir < 0:
+		var accelDir = Input.get_axis("ui_left", "ui_right")
+		velocity.y += gravity * delta
+		if accelDir != 0:
+			if !isHookFlying:
+				facingDir = int(accelDir)
+			battery -= 1 * delta
+		if is_on_floor():
+			jumpsAvailable = maxJumpsAvailable
+			if jumpBuffer:
+				Jump()
+				jumpBuffer = false
+			if accelDir == 0:
+				if velocity.x < 0:
+					velocity.x += frictionMod * delta
+					if velocity.x > 0:
+						velocity.x  = 0
+				if velocity.x > 0:
+					velocity.x -= frictionMod * delta
+					if velocity.x < 0:
+						velocity.x  = 0
+			if velocity.x > maxSpeed:
+				velocity.x -= maxSpeedDecel * delta
+				if accelDir < 0:
+					velocity.x += acceleration * accelDir * delta
+			elif velocity.x < -maxSpeed:
+				velocity.x += maxSpeedDecel * delta
+				if accelDir > 0:
+					velocity.x += acceleration * accelDir * delta
+			else:
 				velocity.x += acceleration * accelDir * delta
-		elif velocity.x < -maxSpeed * airMaxSpeedMod:
-			velocity.x += maxSpeedDecel * delta
-			if accelDir > 0:
+				if velocity.x > 0 and accelDir < 0:
+					velocity.x -= frictionMod * delta
+				if velocity.x < 0 and accelDir > 0:
+					velocity.x += frictionMod * delta
+				if velocity.x >= maxSpeed:
+					velocity.x = maxSpeed
+				if velocity.x <= -maxSpeed:
+					velocity.x = -maxSpeed
+		else:
+			if velocity.x > maxSpeed * airMaxSpeedMod:
+				velocity.x -= maxSpeedDecel * delta
+				if accelDir < 0:
+					velocity.x += acceleration * accelDir * delta
+			elif velocity.x < -maxSpeed * airMaxSpeedMod:
+				velocity.x += maxSpeedDecel * delta
+				if accelDir > 0:
+					velocity.x += acceleration * accelDir * delta
+			else:
 				velocity.x += acceleration * accelDir * delta
-		else:
-			velocity.x += acceleration * accelDir * delta
-			if velocity.x >= maxSpeed * airMaxSpeedMod:
-				velocity.x = maxSpeed * airMaxSpeedMod
-			if velocity.x <= -maxSpeed * airMaxSpeedMod:
-				velocity.x = -maxSpeed * airMaxSpeedMod
-		
-		
-	if isHookFlying:
-		HookExtend(delta)
-	elif isHooked:
-		HookSwing(delta)
-	elif isHookReturning:
-		HookReturn(delta)
-	
-	if Input.is_action_just_pressed("jump"):
-		if jumpsAvailable > 0:
-			Jump()
-		else:
-			jumpBuffer = true
-			get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
+				if velocity.x >= maxSpeed * airMaxSpeedMod:
+					velocity.x = maxSpeed * airMaxSpeedMod
+				if velocity.x <= -maxSpeed * airMaxSpeedMod:
+					velocity.x = -maxSpeed * airMaxSpeedMod
 			
-	if Input.is_action_just_pressed("grapple") && isHookReady:
-		isHookFlying = true
-		isHookReady = false
+			
+		if isHookFlying:
+			HookExtend(delta)
+		elif isHooked:
+			HookSwing(delta)
+		elif isHookReturning:
+			HookReturn(delta)
+			
+		if Input.is_action_just_pressed("dash") and dashesAvailable and !isDashing:
+			if !isHookFlying and !isHooked:
+				battery -= 3
+				dashCD = dashTime
+				isDashing = true
 		
-	if !Input.is_action_pressed("grapple") && !isHookReturning:
-		isHookReturning = true
-		isHooked = false
-		isHookFlying = false
+		if Input.is_action_just_pressed("jump"):
+			if jumpsAvailable > 0:
+				Jump()
+			else:
+				jumpBuffer = true
+				get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
+				
+		if Input.is_action_just_pressed("grapple") && isHookReady:
+			isHookFlying = true
+			isHookReady = false
+			
+		if !Input.is_action_pressed("grapple") && !isHookReturning:
+			isHookReturning = true
+			isHooked = false
+			isHookFlying = false
 		
 	move_and_slide()
 	
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		print(collision.get_collider().name)
 		if collision.get_collider().name == "Charger":
 			if velocity.x == 0 and battery < maxBattery:
 				battery += 100 * delta
@@ -134,10 +147,18 @@ func Jump()-> void:
 	battery -= 1.5
 	jumpsAvailable -= 1
 	
+func Dash(delta)-> void:
+	velocity.x += facingDir*acceleration*2*delta
+	velocity.y = 0
+	dashCD -= delta
+	if dashCD <= 0:
+		isDashing = false
+	
+	
 func HookExtend(delta):
-	$GrapplingHook.target_position += Vector2(5500*hookDir, -5500)*delta
+	$GrapplingHook.target_position += Vector2(5500*facingDir, -5500)*delta
 	if $GrapplingHook.target_position.y < -maxGrappleLength:
-		$GrapplingHook.target_position = Vector2(maxGrappleLength*hookDir, -maxGrappleLength)
+		$GrapplingHook.target_position = Vector2(maxGrappleLength*facingDir, -maxGrappleLength)
 		isHookFlying = false
 	$Rope.remove_point(1)
 	$Rope.add_point($GrapplingHook.target_position)

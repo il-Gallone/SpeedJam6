@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rmcr7qc3yxvb"]
+[gd_scene load_steps=11 format=3 uid="uid://rmcr7qc3yxvb"]
 
 [ext_resource type="PackedScene" uid="uid://cpa7wun6uuoyc" path="res://Prefabs/Debug/player.tscn" id="1_oeaab"]
 [ext_resource type="Texture2D" uid="uid://mrj1m2v5ituo" path="res://Art/Platforms/Debug/Basic Platform-Debug.png" id="2_3h4ju"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://boojp04ggg7c" path="res://Prefabs/Debug/speed_part.tscn" id="4_wam0b"]
 [ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="5_i3wls"]
 [ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="6_p7h2n"]
+[ext_resource type="PackedScene" uid="uid://ctced2pcjsouu" path="res://Prefabs/Debug/grapple_prime_part.tscn" id="7_yaih2"]
+[ext_resource type="PackedScene" uid="uid://xjleq3a33bql" path="res://Prefabs/Debug/jump_prime_part.tscn" id="8_072t2"]
+[ext_resource type="PackedScene" uid="uid://dxr3jv2xnd0w0" path="res://Prefabs/Debug/dash_prime_part.tscn" id="9_72875"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ra8o"]
 
@@ -73,3 +76,12 @@ position = Vector2(2074, -387)
 
 [node name="Jump Part" parent="." instance=ExtResource("6_p7h2n")]
 position = Vector2(1431, 88)
+
+[node name="Grapple Prime Part" parent="." instance=ExtResource("7_yaih2")]
+position = Vector2(1975, 791)
+
+[node name="Jump Prime Part" parent="." instance=ExtResource("8_072t2")]
+position = Vector2(1001, 180)
+
+[node name="Dash Prime Part" parent="." instance=ExtResource("9_72875")]
+position = Vector2(-862, 788)
