@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://rmcr7qc3yxvb"]
+[gd_scene load_steps=9 format=3 uid="uid://rmcr7qc3yxvb"]
 
 [ext_resource type="Texture2D" uid="uid://bnfgrlpcewy7w" path="res://Art/Character/Debug/Player-Debug.png" id="1_1axl6"]
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_857tp"]
 [ext_resource type="Texture2D" uid="uid://mrj1m2v5ituo" path="res://Art/Platforms/Debug/Basic Platform-Debug.png" id="2_3h4ju"]
+[ext_resource type="Script" path="res://Scripts/MaxBatteryBar.gd" id="3_xkeyd"]
+[ext_resource type="Texture2D" uid="uid://u343j3b8wwww" path="res://Art/Platforms/Debug/Charger-Debug.png" id="4_nks1c"]
+[ext_resource type="Script" path="res://Scripts/BatteryBar.gd" id="4_xb04w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
 
@@ -10,25 +13,53 @@
 
 [node name="Test Scene" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(280, 185)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_857tp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(6.4, 6.4)
 shape = SubResource("RectangleShape2D_a58jo")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("1_1axl6")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(0, -64)
+
+[node name="BatteryMax" type="ColorRect" parent="Player/Camera2D"]
+offset_left = -1500.0
+offset_top = -920.0
+offset_right = -1000.0
+offset_bottom = -820.0
+color = Color(0, 0.299941, 0.561121, 1)
+script = ExtResource("3_xkeyd")
+
+[node name="Battery" type="ColorRect" parent="Player/Camera2D"]
+offset_left = -1500.0
+offset_top = -920.0
+offset_right = -1100.0
+offset_bottom = -820.0
+color = Color(0.536697, 0.972733, 1, 1)
+script = ExtResource("4_xb04w")
+
+[node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(800, 900)
 scale = Vector2(10, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 scale = Vector2(64, 6.4)
 shape = SubResource("RectangleShape2D_3ra8o")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
 texture = ExtResource("2_3h4ju")
+
+[node name="Charger" type="StaticBody2D" parent="."]
+position = Vector2(800, 828)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Charger"]
+polygon = PackedVector2Array(-64, 8, -46, -8, 46, -8, 64, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Charger"]
+texture = ExtResource("4_nks1c")

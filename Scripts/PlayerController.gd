@@ -8,6 +8,9 @@ var airMaxSpeedMod = 3
 var frictionMod = 300.0
 var maxSpeedDecel = 12.5
 
+var maxBattery = 500.0
+var battery = 500.0
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
@@ -22,9 +25,13 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += jump_speed
+		battery -= 1.5
 		
 		
 	var accelDir = Input.get_axis("ui_left", "ui_right")
+	if accelDir != 0:
+		battery -= 1 * delta
+	
 	if is_on_floor():
 		if accelDir == 0:
 			if velocity.x < 0:
@@ -71,4 +78,12 @@ func _physics_process(delta: float) -> void:
 		
 		
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().name == "Charger":
+			if velocity.x == 0 and battery < maxBattery:
+				battery += 100 * delta
+				if battery > maxBattery:
+					battery = maxBattery
 	
