@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 					battery = maxBattery
 					
 func Jump()-> void:
-	velocity.y += jump_speed
+	velocity.y = jump_speed
 	battery -= 1.5
 	jumpsAvailable -= 1
 	
