@@ -12,9 +12,10 @@
 [node name="Test Scene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_oeaab")]
+position = Vector2(800, 747)
 
 [node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(1200, 200)
+position = Vector2(148, -21)
 scale = Vector2(0.5, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
@@ -26,19 +27,34 @@ shape = SubResource("RectangleShape2D_3ra8o")
 position = Vector2(-162, 95)
 texture = ExtResource("2_3h4ju")
 
+[node name="Platform5" type="StaticBody2D" parent="."]
+position = Vector2(1073, 211)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform5"]
+position = Vector2(-396, 422)
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform5"]
+position = Vector2(-396, 422)
+texture = ExtResource("2_3h4ju")
+
 [node name="Platform3" type="StaticBody2D" parent="."]
-position = Vector2(1536, -130)
+position = Vector2(1942, 779)
 scale = Vector2(0.5, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+position = Vector2(-292, -7)
 scale = Vector2(64, 6.4)
 shape = SubResource("RectangleShape2D_3ra8o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform3"]
+position = Vector2(-292, -7)
 texture = ExtResource("2_3h4ju")
 
 [node name="Platform2" type="StaticBody2D" parent="."]
-position = Vector2(1200, 200)
+position = Vector2(1282, 75)
 scale = Vector2(0.5, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
@@ -49,6 +65,21 @@ shape = SubResource("RectangleShape2D_3ra8o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform2"]
 position = Vector2(1732, 122)
+rotation = 1.5708
+texture = ExtResource("2_3h4ju")
+
+[node name="Platform4" type="StaticBody2D" parent="."]
+position = Vector2(6038, 250)
+scale = Vector2(0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
+position = Vector2(2258, -52)
+rotation = -1.5708
+scale = Vector2(64, 6.4)
+shape = SubResource("RectangleShape2D_3ra8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform4"]
+position = Vector2(2260, -52)
 rotation = 1.5708
 texture = ExtResource("2_3h4ju")
 
@@ -66,10 +97,10 @@ texture = ExtResource("2_3h4ju")
 [node name="Charger" parent="." instance=ExtResource("3_apotg")]
 
 [node name="Speed Part" parent="." instance=ExtResource("4_wam0b")]
-position = Vector2(1872, -20)
+position = Vector2(604, 208)
 
 [node name="Battery Part" parent="." instance=ExtResource("5_i3wls")]
-position = Vector2(2074, -387)
+position = Vector2(1533, 208)
 
 [node name="Jump Part" parent="." instance=ExtResource("6_p7h2n")]
-position = Vector2(1431, 88)
+position = Vector2(149, 775)
