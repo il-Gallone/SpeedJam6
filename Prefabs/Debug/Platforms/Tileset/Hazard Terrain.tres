@@ -1,0 +1,8 @@
+[gd_resource type="PhysicsMaterial" load_steps=2 format=3 uid="uid://ckmwfwmyhgkmg"]
+
+[sub_resource type="GDScript" id="GDScript_r8fy0"]
+
+[resource]
+friction = 0.0
+bounce = 1.0
+script = SubResource("GDScript_r8fy0")

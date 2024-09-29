@@ -45,6 +45,8 @@ var isInAir = false
 
 var isCharging = false
 
+var invincTime = 0
+
 var lastCheckpoint
 
 func _ready() -> void:
@@ -53,6 +55,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if battery > 0:
+		invincTime -= delta
 		if velocity.y < 10 and velocity.y > -10 and isInAir:
 			animatedSprite.play("Float")
 		elif velocity.y > 10:
@@ -168,7 +171,20 @@ func _physics_process(delta: float) -> void:
 				isHooked = false
 				isHookFlying = false
 			
+		var previousVel = velocity
 		move_and_slide()
+		
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			if collision.get_collider().has_method("DamagePlayer"):
+				velocity = previousVel.bounce(collision.get_normal())*1.2
+				if isHooked:
+					isHooked = false
+					isHookReturning = true
+				if invincTime <= 0:
+					collision.get_collider().DamagePlayer(self)
+					invincTime = 0.5
+		
 		if battery <= 0:
 			Death()
 	else:
@@ -199,6 +215,8 @@ func Respawn() -> void:
 	for refill in get_tree().get_nodes_in_group("Refills"):
 		refill.Respawn()
 	position = lastCheckpoint.global_position
+	velocity = Vector2.ZERO
+	HookReset()
 	
 func LostParts(partCount, type):
 	if type == "speed" or type == "all":
@@ -278,6 +296,19 @@ func HookSwing(_delta):
 	$GrapplingHook/Grapple.rotation = (rad_to_deg(Rope1.angle_to_point(Rope2))/84)-24
 	$GrapplingHook/Grapple.position = $GrapplingHook.target_position
 	print($GrapplingHook/Grapple.rotation)
+	
+func HookReset():
+	if isHookReady or isHookFlying or isHooked or isHookReturning:
+		$GrapplingHook.target_position = Vector2(0, 0)
+		isHookFlying = false
+		isHooked = false
+		isHookReturning = false
+		isHookReady= true
+		$GrapplingHook/Grapple.hide()
+		$GrapplingHook/Rope.remove_point(1)
+		$GrapplingHook/Rope.add_point($GrapplingHook.target_position)
+		$GrapplingHook/Grapple.position = $GrapplingHook.target_position
+		
 	
 	
 func Get_Hook_Pos():

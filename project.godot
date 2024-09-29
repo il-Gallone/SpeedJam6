@@ -27,6 +27,7 @@ project/assembly_name="SpeedJam6"
 [global_group]
 
 Refills="All Battery Refills"
+Hazards="Damaging Obstacles"
 
 [input]
 
