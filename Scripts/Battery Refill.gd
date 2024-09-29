@@ -10,4 +10,5 @@ func _ready() -> void:
 	
 func Respawn() -> void:
 	show()
-	monitorable = true
+	$CollisionShape2D.disabled = false
+	

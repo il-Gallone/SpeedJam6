@@ -29,7 +29,7 @@ func OnPickup(player):
 		player.battery += upgradeAmount
 		if player.battery > player.maxBattery:
 			player.battery = player.maxBattery
-		monitorable = false
+		call_deferred("Disable")
 		hide()
 
 func PrimeUpgrade(_player):
@@ -37,3 +37,6 @@ func PrimeUpgrade(_player):
 	
 func GraveRobbing(player):
 	pass
+	
+func Disable():
+	$CollisionShape2D.disabled = true
