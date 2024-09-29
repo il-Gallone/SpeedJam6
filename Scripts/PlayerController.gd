@@ -44,10 +44,13 @@ func _physics_process(delta: float) -> void:
 		animatedSprite.play("Float")
 	elif velocity.y > 10:
 		animatedSprite.play("Fall")
+		isInAir = true
 	if velocity.x > 0:
 		animatedSprite.flip_h = false
+		$GrapplingHook.position.x = -42
 	elif velocity.x < 0:
 		animatedSprite.flip_h = true
+		$GrapplingHook.position.x = 42
 	if isDashing:
 		Dash(delta)
 	else:
@@ -65,7 +68,7 @@ func _physics_process(delta: float) -> void:
 				isInAir = false
 			jumpsAvailable = maxJumpsAvailable
 			if !animatedSprite.animation == "Landing":
-				if velocity.x <= 1 and velocity.x >= -1:
+				if velocity.x <= 5 and velocity.x >= -5:
 					animatedSprite.play("Idle")
 				else:
 					animatedSprite.play("WalkCycle")
@@ -139,6 +142,7 @@ func _physics_process(delta: float) -> void:
 				get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
 				
 		if Input.is_action_just_pressed("grapple") && isHookReady:
+			animatedSprite.play("Float")
 			isHookFlying = true
 			isHookReady = false
 			
@@ -179,8 +183,8 @@ func HookExtend(delta):
 	if $GrapplingHook.target_position.y < -maxGrappleLength:
 		$GrapplingHook.target_position = Vector2(maxGrappleLength*facingDir, -maxGrappleLength)
 		isHookFlying = false
-	$Rope.remove_point(1)
-	$Rope.add_point($GrapplingHook.target_position)
+	$GrapplingHook/Rope.remove_point(1)
+	$GrapplingHook/Rope.add_point($GrapplingHook.target_position)
 	hookPos = Get_Hook_Pos()
 	if !hookPos and !isHookFlying:
 		isHookReturning = true
@@ -197,8 +201,8 @@ func HookReturn(delta):
 		isHooked = false
 		isHookReturning = false
 		isHookReady= true
-	$Rope.remove_point(1)
-	$Rope.add_point($GrapplingHook.target_position)
+	$GrapplingHook/Rope.remove_point(1)
+	$GrapplingHook/Rope.add_point($GrapplingHook.target_position)
 	
 func HookSwing(_delta):
 	var radius = global_position - hookPos
@@ -206,8 +210,12 @@ func HookSwing(_delta):
 	var radVel = cos(angle) * velocity.length()
 	velocity += radius.normalized() * -radVel
 	$GrapplingHook.target_position = to_local(hookPos)
-	$Rope.remove_point(1)
-	$Rope.add_point($GrapplingHook.target_position)
+	if animatedSprite.flip_h:
+		$GrapplingHook.target_position -= Vector2(42, 0)
+	else:
+		$GrapplingHook.target_position += Vector2(42, 0)
+	$GrapplingHook/Rope.remove_point(1)
+	$GrapplingHook/Rope.add_point($GrapplingHook.target_position)
 	
 	
 func Get_Hook_Pos():
@@ -224,3 +232,8 @@ func On_Jump_Buffer_Timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.has_method("OnPickup"):
 		area.OnPickup(self)
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animatedSprite.animation == "Landing":
+		animatedSprite.play("Idle")
