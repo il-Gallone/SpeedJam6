@@ -38,6 +38,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animatedSprite = $AnimatedSprite2D
 var isInAir = false
 
+func _ready() -> void:
+	$GrapplingHook/Grapple.hide()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if velocity.y < 10 and velocity.y > -10 and isInAir:
@@ -179,16 +182,21 @@ func Dash(delta)-> void:
 	
 	
 func HookExtend(delta):
+	$GrapplingHook/Grapple.show()
+	$GrapplingHook/Grapple.rotation = 45*facingDir
 	$GrapplingHook.target_position += Vector2(5500*facingDir, -5500)*delta
 	if $GrapplingHook.target_position.y < -maxGrappleLength:
 		$GrapplingHook.target_position = Vector2(maxGrappleLength*facingDir, -maxGrappleLength)
 		isHookFlying = false
 	$GrapplingHook/Rope.remove_point(1)
 	$GrapplingHook/Rope.add_point($GrapplingHook.target_position)
+	$GrapplingHook/Grapple.position = $GrapplingHook.target_position
+	
 	hookPos = Get_Hook_Pos()
 	if !hookPos and !isHookFlying:
 		isHookReturning = true
 	if hookPos:
+		print($GrapplingHook/Grapple.position)
 		isHookFlying = false
 		isHooked = true
 		isHookReturning = false
@@ -201,8 +209,10 @@ func HookReturn(delta):
 		isHooked = false
 		isHookReturning = false
 		isHookReady= true
+		$GrapplingHook/Grapple.hide()
 	$GrapplingHook/Rope.remove_point(1)
 	$GrapplingHook/Rope.add_point($GrapplingHook.target_position)
+	$GrapplingHook/Grapple.position = $GrapplingHook.target_position
 	
 func HookSwing(_delta):
 	var radius = global_position - hookPos
@@ -216,6 +226,11 @@ func HookSwing(_delta):
 		$GrapplingHook.target_position += Vector2(42, 0)
 	$GrapplingHook/Rope.remove_point(1)
 	$GrapplingHook/Rope.add_point($GrapplingHook.target_position)
+	var Rope1: Vector2 = $GrapplingHook/Rope.get_point_position(0)
+	var Rope2: Vector2 = $GrapplingHook/Rope.get_point_position(1)
+	$GrapplingHook/Grapple.rotation = (rad_to_deg(Rope1.angle_to_point(Rope2))/84)-24
+	$GrapplingHook/Grapple.position = $GrapplingHook.target_position
+	print($GrapplingHook/Grapple.rotation)
 	
 	
 func Get_Hook_Pos():
