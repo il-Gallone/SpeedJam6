@@ -54,143 +54,144 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if battery > 0:
-		invincTime -= delta
-		if velocity.y < 10 and velocity.y > -10 and isInAir:
-			animatedSprite.play("Float")
-		elif velocity.y > 10:
-			animatedSprite.play("Fall")
-			isInAir = true
-		if velocity.x > 0:
-			animatedSprite.flip_h = false
-			$GrapplingHook.position.x = -42
-		elif velocity.x < 0:
-			animatedSprite.flip_h = true
-			$GrapplingHook.position.x = 42
-		if isDashing:
-			Dash(delta)
-		else:
-			var accelDir = Input.get_axis("ui_left", "ui_right")
-			if dashCD > 0:
-				dashCD -= delta
-			velocity.y += gravity * delta
-			if accelDir != 0:
-				if !isHookFlying:
-					facingDir = int(accelDir)
-				battery -= 1 * delta
-			if is_on_floor():
-				if isCharging:
-					battery += 250 * delta
-					if battery > maxBattery:
-						battery = maxBattery
-				if isInAir:
-					animatedSprite.play("Landing")
-					isInAir = false
-				jumpsAvailable = maxJumpsAvailable
-				if !animatedSprite.animation == "Landing":
-					if velocity.x <= 5 and velocity.x >= -5:
-						animatedSprite.play("Idle")
-					else:
-						animatedSprite.play("WalkCycle")
-						animatedSprite.speed_scale = abs(velocity.x/200)
-				if jumpBuffer:
-					Jump()
-					jumpBuffer = false
-				if accelDir == 0:
-					if velocity.x < 0:
-						velocity.x += frictionMod * delta
-						if velocity.x > 0:
-							velocity.x  = 0
-					if velocity.x > 0:
-						velocity.x -= frictionMod * delta
-						if velocity.x < 0:
-							velocity.x  = 0
-				if velocity.x > maxSpeed:
-					velocity.x -= maxSpeedDecel * delta
-					if accelDir < 0:
-						velocity.x += acceleration * accelDir * delta
-				elif velocity.x < -maxSpeed:
-					velocity.x += maxSpeedDecel * delta
-					if accelDir > 0:
-						velocity.x += acceleration * accelDir * delta
-				else:
-					velocity.x += acceleration * accelDir * delta
-					if velocity.x > 0 and accelDir < 0:
-						velocity.x -= frictionMod * delta
-					if velocity.x < 0 and accelDir > 0:
-						velocity.x += frictionMod * delta
-					if velocity.x >= maxSpeed:
-						velocity.x = maxSpeed
-					if velocity.x <= -maxSpeed:
-						velocity.x = -maxSpeed
-			else:
-				animatedSprite.speed_scale = 1
-				if velocity.x > maxSpeed * airMaxSpeedMod:
-					velocity.x -= maxSpeedDecel * delta
-					if accelDir < 0:
-						velocity.x += acceleration * accelDir * delta
-				elif velocity.x < -maxSpeed * airMaxSpeedMod:
-					velocity.x += maxSpeedDecel * delta
-					if accelDir > 0:
-						velocity.x += acceleration * accelDir * delta
-				else:
-					velocity.x += acceleration * accelDir * delta
-					if velocity.x >= maxSpeed * airMaxSpeedMod:
-						velocity.x = maxSpeed * airMaxSpeedMod
-					if velocity.x <= -maxSpeed * airMaxSpeedMod:
-						velocity.x = -maxSpeed * airMaxSpeedMod
-				
-				
-			if isHookFlying:
-				HookExtend(delta)
-			elif isHooked:
-				HookSwing(delta)
-			elif isHookReturning:
-				HookReturn(delta)
-				
-			if Input.is_action_just_pressed("dash") and dashesAvailable and dashCD <= 0:
-				if !isHookFlying and !isHooked:
-					battery -= 15
-					dashCD = dashTime
-					isDashing = true
-			
-			if Input.is_action_just_pressed("jump"):
-				if jumpsAvailable > 0:
-					Jump()
-				else:
-					jumpBuffer = true
-					get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
-					
-			if Input.is_action_just_pressed("grapple") && isHookReady:
+	if !$Camera2D/Leaderboard.scorePaused:
+		if battery > 0:
+			invincTime -= delta
+			if velocity.y < 10 and velocity.y > -10 and isInAir:
 				animatedSprite.play("Float")
-				isHookFlying = true
-				isHookReady = false
+			elif velocity.y > 10:
+				animatedSprite.play("Fall")
+				isInAir = true
+			if velocity.x > 0:
+				animatedSprite.flip_h = false
+				$GrapplingHook.position.x = -42
+			elif velocity.x < 0:
+				animatedSprite.flip_h = true
+				$GrapplingHook.position.x = 42
+			if isDashing:
+				Dash(delta)
+			else:
+				var accelDir = Input.get_axis("ui_left", "ui_right")
+				if dashCD > 0:
+					dashCD -= delta
+				velocity.y += gravity * delta
+				if accelDir != 0:
+					if !isHookFlying:
+						facingDir = int(accelDir)
+					battery -= 1 * delta
+				if is_on_floor():
+					if isCharging:
+						battery += 250 * delta
+						if battery > maxBattery:
+							battery = maxBattery
+					if isInAir:
+						animatedSprite.play("Landing")
+						isInAir = false
+					jumpsAvailable = maxJumpsAvailable
+					if !animatedSprite.animation == "Landing":
+						if velocity.x <= 5 and velocity.x >= -5:
+							animatedSprite.play("Idle")
+						else:
+							animatedSprite.play("WalkCycle")
+							animatedSprite.speed_scale = abs(velocity.x/200)
+					if jumpBuffer:
+						Jump()
+						jumpBuffer = false
+					if accelDir == 0:
+						if velocity.x < 0:
+							velocity.x += frictionMod * delta
+							if velocity.x > 0:
+								velocity.x  = 0
+						if velocity.x > 0:
+							velocity.x -= frictionMod * delta
+							if velocity.x < 0:
+								velocity.x  = 0
+					if velocity.x > maxSpeed:
+						velocity.x -= maxSpeedDecel * delta
+						if accelDir < 0:
+							velocity.x += acceleration * accelDir * delta
+					elif velocity.x < -maxSpeed:
+						velocity.x += maxSpeedDecel * delta
+						if accelDir > 0:
+							velocity.x += acceleration * accelDir * delta
+					else:
+						velocity.x += acceleration * accelDir * delta
+						if velocity.x > 0 and accelDir < 0:
+							velocity.x -= frictionMod * delta
+						if velocity.x < 0 and accelDir > 0:
+							velocity.x += frictionMod * delta
+						if velocity.x >= maxSpeed:
+							velocity.x = maxSpeed
+						if velocity.x <= -maxSpeed:
+							velocity.x = -maxSpeed
+				else:
+					animatedSprite.speed_scale = 1
+					if velocity.x > maxSpeed * airMaxSpeedMod:
+						velocity.x -= maxSpeedDecel * delta
+						if accelDir < 0:
+							velocity.x += acceleration * accelDir * delta
+					elif velocity.x < -maxSpeed * airMaxSpeedMod:
+						velocity.x += maxSpeedDecel * delta
+						if accelDir > 0:
+							velocity.x += acceleration * accelDir * delta
+					else:
+						velocity.x += acceleration * accelDir * delta
+						if velocity.x >= maxSpeed * airMaxSpeedMod:
+							velocity.x = maxSpeed * airMaxSpeedMod
+						if velocity.x <= -maxSpeed * airMaxSpeedMod:
+							velocity.x = -maxSpeed * airMaxSpeedMod
+					
+					
+				if isHookFlying:
+					HookExtend(delta)
+				elif isHooked:
+					HookSwing(delta)
+				elif isHookReturning:
+					HookReturn(delta)
+					
+				if Input.is_action_just_pressed("dash") and dashesAvailable and dashCD <= 0:
+					if !isHookFlying and !isHooked:
+						battery -= 15
+						dashCD = dashTime
+						isDashing = true
 				
-			if !Input.is_action_pressed("grapple") && !isHookReturning:
-				isHookReturning = true
-				isHooked = false
-				isHookFlying = false
-			
-		var previousVel = velocity
-		move_and_slide()
-		
-		for i in get_slide_collision_count():
-			var collision = get_slide_collision(i)
-			if collision.get_collider().has_method("DamagePlayer"):
-				velocity = previousVel.bounce(collision.get_normal())*1.2
-				if isHooked:
-					isHooked = false
+				if Input.is_action_just_pressed("jump"):
+					if jumpsAvailable > 0:
+						Jump()
+					else:
+						jumpBuffer = true
+						get_tree().create_timer(jumpBufferTime).timeout.connect(On_Jump_Buffer_Timeout)
+						
+				if Input.is_action_just_pressed("grapple") && isHookReady:
+					animatedSprite.play("Float")
+					isHookFlying = true
+					isHookReady = false
+					
+				if !Input.is_action_pressed("grapple") && !isHookReturning:
 					isHookReturning = true
-				if invincTime <= 0:
-					collision.get_collider().DamagePlayer(self)
-					invincTime = 0.5
-		
-		if battery <= 0:
-			Death()
-	else:
-		if animatedSprite.animation != "Death":
-			Respawn()
+					isHooked = false
+					isHookFlying = false
+				
+			var previousVel = velocity
+			move_and_slide()
 			
+			for i in get_slide_collision_count():
+				var collision = get_slide_collision(i)
+				if collision.get_collider().has_method("DamagePlayer"):
+					velocity = previousVel.bounce(collision.get_normal())*1.2
+					if isHooked:
+						isHooked = false
+						isHookReturning = true
+					if invincTime <= 0:
+						collision.get_collider().DamagePlayer(self)
+						invincTime = 0.5
+			
+			if battery <= 0:
+				Death()
+		else:
+			if animatedSprite.animation != "Death":
+				Respawn()
+				
 
 func Death()-> void:
 	#TODO Death Animation
@@ -295,7 +296,6 @@ func HookSwing(_delta):
 	var Rope2: Vector2 = $GrapplingHook/Rope.get_point_position(1)
 	$GrapplingHook/Grapple.rotation = (rad_to_deg(Rope1.angle_to_point(Rope2))/84)-24
 	$GrapplingHook/Grapple.position = $GrapplingHook.target_position
-	print($GrapplingHook/Grapple.rotation)
 	
 func HookReset():
 	if isHookReady or isHookFlying or isHooked or isHookReturning:
@@ -331,6 +331,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			lastCheckpoint.NotCheckpoint()
 		area.Checkpoint()
 		lastCheckpoint = area
+	if area.has_method("PlayerContact"):
+		area.PlayerContact(self)
 		
 			
 func _on_area_2d_area_exited(area: Area2D) -> void:

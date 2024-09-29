@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpa7wun6uuoyc"]
+[gd_scene load_steps=14 format=3 uid="uid://cpa7wun6uuoyc"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_dbbsw"]
 [ext_resource type="Texture2D" uid="uid://u7qjxy6dbhnn" path="res://Art/UI/battery_frame.png" id="2_m5au6"]
@@ -8,8 +8,14 @@
 [ext_resource type="Script" path="res://Scripts/MaxBatteryBorder.gd" id="3_w0guf"]
 [ext_resource type="SpriteFrames" uid="uid://d05db5k2yworl" path="res://Art/Character/Character Sprite.tres" id="4_cqb5w"]
 [ext_resource type="Script" path="res://Scripts/BatteryBar.gd" id="4_rj5qj"]
+[ext_resource type="Script" path="res://Scripts/TimeLeaderboard.gd" id="8_x60i7"]
+[ext_resource type="Script" path="res://Scripts/Timer.gd" id="9_qambf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vrwg"]
+font_size = 40
+font_color = Color(1, 1, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wefj"]
 
@@ -66,6 +72,32 @@ offset_right = -1000.0
 offset_bottom = -744.0
 color = Color(0.536697, 0.972733, 1, 1)
 script = ExtResource("4_rj5qj")
+
+[node name="Leaderboard" type="TextEdit" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -150.0
+offset_right = 125.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter Leaderboard Name Here"
+editable = false
+script = ExtResource("8_x60i7")
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = 1300.0
+offset_top = -980.0
+offset_right = 1550.0
+offset_bottom = -920.0
+text = "00:00:00"
+label_settings = SubResource("LabelSettings_4vrwg")
+vertical_alignment = 1
+script = ExtResource("9_qambf")
 
 [node name="Area2D" type="Area2D" parent="."]
 
