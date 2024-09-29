@@ -35,15 +35,19 @@ var hookRopeLength: float = 0.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+@onready var animatedSprite = $AnimatedSprite2D
+var isInAir = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	
+	if velocity.y < 10 and velocity.y > -10 and isInAir:
+		animatedSprite.play("Float")
+	elif velocity.y > 10:
+		animatedSprite.play("Fall")
+	if velocity.x > 0:
+		animatedSprite.flip_h = false
+	elif velocity.x < 0:
+		animatedSprite.flip_h = true
 	if isDashing:
 		Dash(delta)
 	else:
@@ -56,7 +60,16 @@ func _physics_process(delta: float) -> void:
 				facingDir = int(accelDir)
 			battery -= 1 * delta
 		if is_on_floor():
+			if isInAir:
+				animatedSprite.play("Landing")
+				isInAir = false
 			jumpsAvailable = maxJumpsAvailable
+			if !animatedSprite.animation == "Landing":
+				if velocity.x <= 1 and velocity.x >= -1:
+					animatedSprite.play("Idle")
+				else:
+					animatedSprite.play("WalkCycle")
+					animatedSprite.speed_scale = abs(velocity.x/200)
 			if jumpBuffer:
 				Jump()
 				jumpBuffer = false
@@ -88,6 +101,7 @@ func _physics_process(delta: float) -> void:
 				if velocity.x <= -maxSpeed:
 					velocity.x = -maxSpeed
 		else:
+			animatedSprite.speed_scale = 1
 			if velocity.x > maxSpeed * airMaxSpeedMod:
 				velocity.x -= maxSpeedDecel * delta
 				if accelDir < 0:
@@ -145,9 +159,11 @@ func _physics_process(delta: float) -> void:
 					battery = maxBattery
 					
 func Jump()-> void:
+	isInAir = true
 	velocity.y = jumpSpeed
 	battery -= 1.5
 	jumpsAvailable -= 1
+	animatedSprite.play("Jump")
 	
 func Dash(delta)-> void:
 	velocity.x += facingDir*acceleration*2*delta

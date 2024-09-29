@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cpa7wun6uuoyc"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_dbbsw"]
-[ext_resource type="Texture2D" uid="uid://bnfgrlpcewy7w" path="res://Art/Character/Debug/Player-Debug.png" id="2_3s33j"]
 [ext_resource type="Script" path="res://Scripts/MaxBatteryBar.gd" id="3_hjca7"]
+[ext_resource type="SpriteFrames" uid="uid://d05db5k2yworl" path="res://Art/Character/Character Sprite.tres" id="4_cqb5w"]
 [ext_resource type="Script" path="res://Scripts/BatteryBar.gd" id="4_rj5qj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
@@ -15,11 +15,8 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_dbbsw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(6.4, 6.4)
+scale = Vector2(7, 9)
 shape = SubResource("RectangleShape2D_a58jo")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_3s33j")
 
 [node name="GrapplingHook" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
@@ -52,7 +49,13 @@ script = ExtResource("4_rj5qj")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(6.4, 6.4)
+scale = Vector2(7, 9)
 shape = SubResource("RectangleShape2D_8wefj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("4_cqb5w")
+animation = &"WalkCycle"
+frame_progress = 0.702701
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
