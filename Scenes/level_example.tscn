@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://ckeb03r4xo6sy"]
+[gd_scene load_steps=11 format=4 uid="uid://ckeb03r4xo6sy"]
 
 [ext_resource type="PackedScene" uid="uid://cpa7wun6uuoyc" path="res://Prefabs/player.tscn" id="1_0gmqe"]
 [ext_resource type="PackedScene" uid="uid://d11wkxool2ak6" path="res://Prefabs/Debug/charger.tscn" id="3_x0q75"]
@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="5_qjlet"]
 [ext_resource type="TileSet" uid="uid://dkmk7wwt0c081" path="res://Prefabs/Debug/Platforms/Tileset/Debug Platform Tileset.tres" id="6_6j08n"]
 [ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="6_ta4sf"]
-[ext_resource type="PackedScene" path="res://Prefabs/Debug/jump_prime_part.tscn" id="7_3tqhv"]
+[ext_resource type="PackedScene" uid="uid://xjleq3a33bql" path="res://Prefabs/Debug/jump_prime_part.tscn" id="7_3tqhv"]
 [ext_resource type="PackedScene" uid="uid://ctced2pcjsouu" path="res://Prefabs/Debug/grapple_prime_part.tscn" id="8_8fat0"]
-[ext_resource type="PackedScene" path="res://Prefabs/Debug/dash_prime_part.tscn" id="9_k585t"]
+[ext_resource type="PackedScene" uid="uid://dxr3jv2xnd0w0" path="res://Prefabs/Debug/dash_prime_part.tscn" id="9_k585t"]
+[ext_resource type="PackedScene" uid="uid://hqqrdr23xnfn" path="res://Prefabs/Debug/battery_refill.tscn" id="10_rwwns"]
 
 [node name="Level Example" type="Node2D"]
 
@@ -45,3 +46,6 @@ position = Vector2(-155, 892)
 
 [node name="Charger3" parent="." instance=ExtResource("3_x0q75")]
 position = Vector2(2096, -8)
+
+[node name="Battery Part2" parent="." instance=ExtResource("10_rwwns")]
+position = Vector2(-2603, -241)

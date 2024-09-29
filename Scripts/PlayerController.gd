@@ -196,6 +196,8 @@ func Respawn() -> void:
 		get_tree().current_scene.add_child(newCorpse)
 		LostParts(lowestPartCount, "all")
 	battery = maxBattery
+	for refill in get_tree().get_nodes_in_group("Refills"):
+		refill.Respawn()
 	position = lastCheckpoint.global_position
 	
 func LostParts(partCount, type):

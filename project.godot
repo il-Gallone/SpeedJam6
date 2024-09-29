@@ -24,6 +24,10 @@ window/size/viewport_height=900
 
 project/assembly_name="SpeedJam6"
 
+[global_group]
+
+Refills="All Battery Refills"
+
 [input]
 
 ui_left={
