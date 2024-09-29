@@ -77,10 +77,9 @@ func _physics_process(delta: float) -> void:
 				battery -= 1 * delta
 			if is_on_floor():
 				if isCharging:
-					if velocity.x == 0:
-						battery += 200 * delta
-						if battery > maxBattery:
-							battery = maxBattery
+					battery += 250 * delta
+					if battery > maxBattery:
+						battery = maxBattery
 				if isInAir:
 					animatedSprite.play("Landing")
 					isInAir = false
