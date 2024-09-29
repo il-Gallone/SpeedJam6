@@ -1,6 +1,18 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://dkmk7wwt0c081"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://dkmk7wwt0c081"]
 
 [ext_resource type="Texture2D" uid="uid://g31ct3b0cycq" path="res://Art/Platforms/Debug/Basic Platform Tileset-Debug.png" id="1_j2vwq"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_vl5wd"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 1, 0, 1, 65537, 131072, 2, 2, 65536, 0, 65538, 131072, 0, 3, 0, 0, 65539, 0, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_4p8j0"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 1, 65536, 0, 65537, 131072, 0, 2, 0, 2, 65538, 65536, 2, 3, 0, 0, 65539, 0, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_mj8tu"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 65536, 1, 131072, 131072, 2, 196608, 0, 0, 1, 0, 0, 65537, 131072, 1, 131073, 65536, 2, 196609, 0, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_obvte"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 65536, 1, 196608, 0, 0, 1, 0, 0, 65537, 0, 2, 131073, 131072, 1, 196609, 0, 0)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_luy7h"]
 
@@ -34,3 +46,7 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_luy7h")
 sources/0 = SubResource("TileSetAtlasSource_eiise")
+pattern_0 = SubResource("TileMapPattern_vl5wd")
+pattern_1 = SubResource("TileMapPattern_4p8j0")
+pattern_2 = SubResource("TileMapPattern_mj8tu")
+pattern_3 = SubResource("TileMapPattern_obvte")
