@@ -38,6 +38,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animatedSprite = $AnimatedSprite2D
 var isInAir = false
 
+var isCharging = false
+
+var lastCheckpoint
+
 func _ready() -> void:
 	$GrapplingHook/Grapple.hide()
 
@@ -66,6 +70,11 @@ func _physics_process(delta: float) -> void:
 				facingDir = int(accelDir)
 			battery -= 1 * delta
 		if is_on_floor():
+			if isCharging:
+				if velocity.x == 0:
+					battery += 200 * delta
+					if battery > maxBattery:
+						battery = maxBattery
 			if isInAir:
 				animatedSprite.play("Landing")
 				isInAir = false
@@ -155,15 +164,7 @@ func _physics_process(delta: float) -> void:
 			isHookFlying = false
 		
 	move_and_slide()
-	
-	
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider().name == "Charger":
-			if velocity.x == 0 and battery < maxBattery:
-				battery += 100 * delta
-				if battery > maxBattery:
-					battery = maxBattery
+
 					
 func Jump()-> void:
 	isInAir = true
@@ -247,8 +248,18 @@ func On_Jump_Buffer_Timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.has_method("OnPickup"):
 		area.OnPickup(self)
-
-
+	if area.has_method("Checkpoint"):
+		isCharging = true
+		if lastCheckpoint:
+			lastCheckpoint.NotCheckpoint()
+		area.Checkpoint()
+		
+			
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.has_method("Checkpoint"):
+		isCharging = false
+		
+	
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animatedSprite.animation == "Landing":
 		animatedSprite.play("Idle")
