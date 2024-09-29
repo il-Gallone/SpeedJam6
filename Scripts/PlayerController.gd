@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export_category("Movement Parameters")
 @export var maxSpeed: float = 400.0
 @export var acceleration: float = 1200.0
-@export var jumpSpeed: float = -600.0
+@export var jumpSpeed: float = -720.0
 @export var airMaxSpeedMod: int = 2
 @export var frictionMod: float = 1200.0
 @export var maxSpeedDecel: float = 1400
