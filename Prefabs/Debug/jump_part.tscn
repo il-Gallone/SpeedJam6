@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c25vep2sugvsh"]
 
 [ext_resource type="Script" path="res://Scripts/Jump Part.gd" id="1_8178s"]
-[ext_resource type="Texture2D" uid="uid://dofyr267ishx8" path="res://Art/Misc/Debug/Jump Collectable-Debug.png" id="2_4le7j"]
+[ext_resource type="Texture2D" uid="uid://c5evipf86wspp" path="res://Art/Misc/piston_highlight.png" id="2_e2svw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
@@ -14,4 +14,5 @@ scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_xny8t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4le7j")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_e2svw")

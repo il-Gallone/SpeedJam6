@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://boojp04ggg7c"]
 
 [ext_resource type="Script" path="res://Scripts/Speed Part.gd" id="1_hpq2y"]
-[ext_resource type="Texture2D" uid="uid://ddtyntmeg08kd" path="res://Art/Misc/Debug/Speed Collectable-Debug.png" id="2_v7vfo"]
+[ext_resource type="Texture2D" uid="uid://cqts34rekm5cx" path="res://Art/Misc/gear_highlight.png" id="2_l0ms2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
@@ -14,4 +14,5 @@ scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_xny8t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_v7vfo")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_l0ms2")
