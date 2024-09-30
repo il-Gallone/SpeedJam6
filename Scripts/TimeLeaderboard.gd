@@ -8,7 +8,8 @@ var leaderboard_key = "fastestTime"
 var session_token = ""
 var score = 0
 var playerInput = false
-var scorePaused = false
+var scorePaused = true
+var authenticationComplete = false
 
 # HTTP Request node can only handle one call per node
 var auth_http = HTTPRequest.new()
@@ -21,19 +22,17 @@ var get_name_http = HTTPRequest.new()
 func _ready():
 	_authentication_request()
 	hide()
-	match OS.get_name():
-		"HTML5", "Windows", "X11":
-			_change_player_name(OS.get_unique_id())
+	get_parent().find_child("SubmitButton").hide()
+	get_parent().find_child("Leaderboard Display Top").hide()
+	get_parent().find_child("Leaderboard Display Personal").hide()
 
 func _process(delta):
 	if playerInput and !scorePaused:
 		score += delta
 	else:
-		if Input.is_action_just_pressed("jump") or Input.get_axis("ui_left", "ui_right") != 0:
-			playerInput = true
-	if editable:
-		if Input.is_action_just_pressed("ui_accept"):
-			_upload_score(score*1000)
+		if authenticationComplete and !scorePaused:
+			if Input.is_action_just_pressed("jump") or Input.get_axis("ui_left", "ui_right") != 0:
+				playerInput = true
 
 
 func _authentication_request():
@@ -89,6 +88,7 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	
 	# Clear node
 	auth_http.queue_free()
+	authenticationComplete = true
 	# Get leaderboards
 	_get_leaderboards()
 
@@ -114,17 +114,54 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 	print(json.get_data())
 	
 	# Formatting as a leaderboard
-	var leaderboardFormatted = ""
+	var leaderboardTopFormatted = ""
+	var leaderboardPersonalFormatted = ""
 	
 	if not json.get_data().items:
 		return
 	
-	for n in json.get_data().items.size():
-		leaderboardFormatted += str(json.get_data().items[n].rank)+str(". ")
-		leaderboardFormatted += str(json.get_data().items[n].metadata)+str(" - ")
-		leaderboardFormatted += str(json.get_data().items[n].score)+str("\n")
+	for n in min(json.get_data().items.size(), 10):
+		leaderboardTopFormatted += str(json.get_data().items[n].rank)+str(". ")
+		leaderboardTopFormatted += str(json.get_data().items[n].metadata)+str(" - ")
+		var timeScore = json.get_data().items[n].score / 1000
+		var timeMinutes: int = floor(timeScore/60)
+		var timeSeconds: int = floor(timeScore - timeMinutes * 60)
+		var timeMilliseconds: int = ((timeScore - timeMinutes * 60)-timeSeconds)*100
+		var timeFormat = "%02d:%02d:%02d \n"
+		leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
 	# Print the formatted leaderboard to the console
-	print(leaderboardFormatted)
+	get_parent().find_child("TopRankings").text = leaderboardTopFormatted
+	
+	for n in json.get_data().items.size():
+		match OS.get_name():
+			"HTML5", "Windows", "X11":
+				if json.get_data().items[n].member_id == OS.get_unique_id():
+					var timeScore
+					var timeMinutes: int
+					var timeSeconds: int
+					var timeMilliseconds: int
+					var timeFormat = "%02d:%02d:%02d \n"
+					for m in n:
+						if m == 0:
+							m = n -9
+						if json.get_data().items[m]:
+							leaderboardTopFormatted += str(json.get_data().items[m].rank)+str(". ")
+							leaderboardTopFormatted += str(json.get_data().items[m].metadata)+str(" - ")
+							timeScore = json.get_data().items[m].score / 1000
+							timeMinutes = floor(timeScore/60)
+							timeSeconds = floor(timeScore - timeMinutes * 60)
+							timeMilliseconds = ((timeScore - timeMinutes * 60)-timeSeconds)*100
+							leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
+					leaderboardTopFormatted += str(json.get_data().items[n].rank)+str(". ")
+					leaderboardTopFormatted += str(json.get_data().items[n].metadata)+str(" - ")
+					timeScore = json.get_data().items[n].score / 1000
+					timeSeconds = floor(timeScore - timeMinutes * 60)
+					timeMilliseconds = ((timeScore - timeMinutes * 60)-timeSeconds)*100
+					leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
+				else:
+					leaderboardPersonalFormatted = "Not Ranked"
+	get_parent().find_child("PersonalRankings").text = leaderboardPersonalFormatted
+							
 	
 	# Clear node
 	leaderboard_http.queue_free()
@@ -132,24 +169,28 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 
 func SubmitScore() -> void:
 	show()
+	get_parent().find_child("SubmitButton").show()
 	editable = true
 
 func _upload_score(score: int):
-	var data = { "score": str(score), "member_id": OS.get_unique_id(), "metadata": text}
-	var headers = ["Content-Type: application/json", "x-session-token:"+session_token]
-	submit_score_http = HTTPRequest.new()
-	add_child(submit_score_http)
-	submit_score_http.request_completed.connect(_on_upload_score_request_completed)
-	# Send request
-	submit_score_http.request("https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/submit", headers, HTTPClient.METHOD_POST, JSON.stringify(data))
-	# Print what we're sending, for debugging purposes:
-	print(data)
+	match OS.get_name():
+		"HTML5", "Windows", "X11":
+			var data = { "score": str(score), "member_id": OS.get_unique_id(), "metadata": text}
+			var headers = ["Content-Type: application/json", "x-session-token:"+session_token]
+			submit_score_http = HTTPRequest.new()
+			add_child(submit_score_http)
+			submit_score_http.request_completed.connect(_on_upload_score_request_completed)
+			# Send request
+			submit_score_http.request("https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/submit", headers, HTTPClient.METHOD_POST, JSON.stringify(data))
+			# Print what we're sending, for debugging purposes:
+			print(data)
+	_get_leaderboards()
 
-func _change_player_name(new_name):
+func _change_player_name():
 	print("Changing player name")
 	
 	# use this variable for setting the name of the player
-	var player_name = new_name
+	var player_name = text
 	
 	var data = { "name": str(player_name) }
 	var url =  "https://api.lootlocker.io/game/player/name"
@@ -200,3 +241,13 @@ func _on_upload_score_request_completed(result, response_code, headers, body) :
 	
 	# Clear node
 	submit_score_http.queue_free()
+
+
+func _on_submit_button_pressed() -> void:
+	_change_player_name()
+	hide()
+	get_parent().find_child("SubmitButton").hide()
+	get_parent().find_child("Leaderboard Display Top").show()
+	get_parent().find_child("Leaderboard Display Personal").show()
+	_upload_score(score*1000)
+	

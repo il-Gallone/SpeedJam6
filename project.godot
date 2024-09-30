@@ -29,6 +29,10 @@ project/assembly_name="SpeedJam6"
 Refills="All Battery Refills"
 Hazards="Damaging Obstacles"
 
+[gui]
+
+theme/custom_font="res://Art/UI/hemi head bd it.otf"
+
 [input]
 
 ui_accept={

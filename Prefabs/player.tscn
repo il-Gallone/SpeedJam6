@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpa7wun6uuoyc"]
+[gd_scene load_steps=28 format=3 uid="uid://cpa7wun6uuoyc"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_dbbsw"]
 [ext_resource type="Texture2D" uid="uid://u7qjxy6dbhnn" path="res://Art/UI/battery_frame.png" id="2_m5au6"]
@@ -10,12 +10,45 @@
 [ext_resource type="Script" path="res://Scripts/BatteryBar.gd" id="4_rj5qj"]
 [ext_resource type="Script" path="res://Scripts/TimeLeaderboard.gd" id="8_x60i7"]
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="9_qambf"]
+[ext_resource type="Texture2D" uid="uid://dg2ugqoylqqe6" path="res://Art/UI/input_bg.png" id="9_t35mx"]
+[ext_resource type="FontFile" uid="uid://nilmuqj0ssuv" path="res://Art/UI/hemi head bd it.otf" id="10_e1fti"]
+[ext_resource type="Texture2D" uid="uid://lpdj5pd31jt2" path="res://Art/UI/inputframe_idle.png" id="11_uq84o"]
+[ext_resource type="Script" path="res://Scripts/AuthenticationHold.gd" id="13_ggqvd"]
+[ext_resource type="Texture2D" uid="uid://rl3qot8kbe8k" path="res://Art/UI/menu_panel.png" id="13_tsosy"]
+[ext_resource type="Texture2D" uid="uid://8nm0wcbuf6g3" path="res://Art/UI/button_idle.png" id="14_emsr3"]
+[ext_resource type="Texture2D" uid="uid://g5n1m7x1fjix" path="res://Art/UI/leaderboard_frame.png" id="16_og04g"]
+[ext_resource type="Texture2D" uid="uid://b31kyx7qxaa74" path="res://Art/UI/leaderboard_bg.png" id="17_5j0rc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_edsji"]
+font_size = 40
+font_color = Color(0.0728427, 0.0728426, 0.0728427, 0.6)
+
 [sub_resource type="LabelSettings" id="LabelSettings_4vrwg"]
+font = ExtResource("10_e1fti")
 font_size = 40
 font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uqboh"]
+font = ExtResource("10_e1fti")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3whq"]
+font_size = 40
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n1glf"]
+font_size = 35
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d7e72"]
+font_size = 40
+font_color = Color(0, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w020l"]
+font_size = 35
+font_color = Color(0, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wefj"]
 
@@ -81,25 +114,216 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -150.0
-offset_right = 125.0
-offset_bottom = -110.0
+offset_left = -280.0
+offset_top = -200.0
+offset_right = 20.0
+offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 2
-placeholder_text = "Enter Leaderboard Name Here"
+theme_override_font_sizes/font_size = 40
+placeholder_text = "Enter Name"
 editable = false
 script = ExtResource("8_x60i7")
 
-[node name="Label" type="Label" parent="Camera2D"]
-offset_left = 1300.0
-offset_top = -980.0
-offset_right = 1550.0
-offset_bottom = -920.0
+[node name="SubmitButton" type="Button" parent="Camera2D"]
+offset_left = 50.0
+offset_top = -220.0
+offset_right = 440.0
+offset_bottom = -59.0
+scale = Vector2(0.7, 0.7)
+theme_override_fonts/font = ExtResource("10_e1fti")
+icon = ExtResource("14_emsr3")
+flat = true
+
+[node name="ButtonLabel" type="Label" parent="Camera2D/SubmitButton"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 50.0
+offset_right = 296.0
+offset_bottom = 105.0
+text = "SUBMIT"
+label_settings = SubResource("LabelSettings_edsji")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="TextureRect" parent="Camera2D"]
+z_index = 98
+offset_left = 1325.0
+offset_top = -920.0
+offset_right = 1596.0
+offset_bottom = -791.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_t35mx")
+
+[node name="Label" type="Label" parent="Camera2D/Timer"]
+z_index = 99
+offset_left = 5.0
+offset_top = 25.0
+offset_right = 195.0
+offset_bottom = 85.0
+scale = Vector2(1.3, 1.3)
 text = "00:00:00"
 label_settings = SubResource("LabelSettings_4vrwg")
+horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_qambf")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/Timer"]
+z_index = 100
+layout_mode = 0
+offset_left = -60.0
+offset_top = -10.0
+offset_right = 322.0
+offset_bottom = 143.0
+texture = ExtResource("11_uq84o")
+
+[node name="TitleScreen" type="ColorRect" parent="Camera2D"]
+z_index = 300
+offset_left = -1600.0
+offset_top = -1030.0
+offset_right = 1600.0
+offset_bottom = 770.0
+color = Color(0.35826, 0.468992, 0.496813, 1)
+script = ExtResource("13_ggqvd")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/TitleScreen"]
+layout_mode = 0
+offset_left = 1200.0
+offset_top = 550.0
+offset_right = 2000.0
+offset_bottom = 1050.0
+texture = ExtResource("13_tsosy")
+patch_margin_left = 125
+patch_margin_top = 125
+patch_margin_right = 125
+patch_margin_bottom = 125
+
+[node name="AuthLabel" type="Label" parent="Camera2D/TitleScreen/NinePatchRect"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 700.0
+offset_bottom = 300.0
+text = "AUTHENTICATING"
+label_settings = SubResource("LabelSettings_uqboh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Camera2D/TitleScreen"]
+layout_mode = 0
+offset_left = 1420.0
+offset_top = 1100.0
+offset_right = 1810.0
+offset_bottom = 1261.0
+theme_override_fonts/font = ExtResource("10_e1fti")
+icon = ExtResource("14_emsr3")
+flat = true
+
+[node name="ButtonLabel" type="Label" parent="Camera2D/TitleScreen/Button"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 55.0
+offset_right = 303.0
+offset_bottom = 110.0
+text = "CONTINUE"
+label_settings = SubResource("LabelSettings_edsji")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Leaderboard Display Top" type="TextureRect" parent="Camera2D"]
+z_index = 100
+offset_left = -1100.0
+offset_top = -600.0
+offset_right = -402.0
+offset_bottom = 221.0
+texture = ExtResource("16_og04g")
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/Leaderboard Display Top"]
+z_index = -1
+layout_mode = 0
+offset_left = 20.0
+offset_top = 220.0
+offset_right = 686.0
+offset_bottom = 806.0
+texture = ExtResource("17_5j0rc")
+
+[node name="Label" type="Label" parent="Camera2D/Leaderboard Display Top"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 160.0
+offset_right = 500.0
+offset_bottom = 210.0
+text = "TOP PLAYERS"
+label_settings = SubResource("LabelSettings_v3whq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopRankings" type="Label" parent="Camera2D/Leaderboard Display Top"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 270.0
+offset_right = 650.0
+offset_bottom = 839.0
+text = "1 - NAME - XX:XX:XX
+2 - NAME - XX:XX:XX
+3 - NAME - XX:XX:XX
+4 - NAME - XX:XX:XX
+5 - NAME - XX:XX:XX
+6 - NAME - XX:XX:XX
+7 - NAME - XX:XX:XX
+8 - NAME - XX:XX:XX
+9 - NAME - XX:XX:XX
+10 - NAME - XX:XX:XX
+"
+label_settings = SubResource("LabelSettings_n1glf")
+horizontal_alignment = 1
+
+[node name="Leaderboard Display Personal" type="TextureRect" parent="Camera2D"]
+z_index = 100
+offset_left = 402.0
+offset_top = -600.0
+offset_right = 1100.0
+offset_bottom = 221.0
+texture = ExtResource("16_og04g")
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/Leaderboard Display Personal"]
+z_index = -1
+layout_mode = 0
+offset_left = 20.0
+offset_top = 220.0
+offset_right = 686.0
+offset_bottom = 806.0
+texture = ExtResource("17_5j0rc")
+
+[node name="Label" type="Label" parent="Camera2D/Leaderboard Display Personal"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 160.0
+offset_right = 500.0
+offset_bottom = 210.0
+text = "YOUR RANKING"
+label_settings = SubResource("LabelSettings_d7e72")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PersonalRankings" type="Label" parent="Camera2D/Leaderboard Display Personal"]
+offset_left = 50.0
+offset_top = 270.0
+offset_right = 650.0
+offset_bottom = 839.0
+text = "1 - NAME - XX:XX:XX
+2 - NAME - XX:XX:XX
+3 - NAME - XX:XX:XX
+4 - NAME - XX:XX:XX
+5 - NAME - XX:XX:XX
+6 - NAME - XX:XX:XX
+7 - NAME - XX:XX:XX
+8 - NAME - XX:XX:XX
+9 - NAME - XX:XX:XX
+10 - NAME - XX:XX:XX
+"
+label_settings = SubResource("LabelSettings_w020l")
+horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -110,8 +334,10 @@ shape = SubResource("RectangleShape2D_8wefj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("4_cqb5w")
-animation = &"Float"
+animation = &"WalkCycle"
 
+[connection signal="pressed" from="Camera2D/SubmitButton" to="Camera2D/Leaderboard" method="_on_submit_button_pressed"]
+[connection signal="pressed" from="Camera2D/TitleScreen/Button" to="Camera2D/TitleScreen" method="_on_button_pressed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
