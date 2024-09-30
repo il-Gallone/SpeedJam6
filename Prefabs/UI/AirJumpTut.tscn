@@ -1,11 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://jxkjn8dw6ybg"]
+[gd_scene load_steps=4 format=3 uid="uid://jxkjn8dw6ybg"]
 
 [ext_resource type="Script" path="res://Prefabs/UI/InputUI.gd" id="1_mvxnq"]
 [ext_resource type="Texture2D" uid="uid://hrlugu3amawy" path="res://Art/UI/Jump_Buttons.png" id="2_lvgir"]
-[ext_resource type="FontFile" uid="uid://nilmuqj0ssuv" path="res://Art/UI/hemi head bd it.otf" id="3_fg48x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2w2tk"]
-font = ExtResource("3_fg48x")
 font_size = 60
 font_color = Color(0.34, 0.34, 0.34, 1)
 shadow_size = 9
