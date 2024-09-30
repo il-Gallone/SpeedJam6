@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://boojp04ggg7c" path="res://Prefabs/Debug/speed_part.tscn" id="4_winbn"]
 [ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="5_qjlet"]
 [ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="6_ta4sf"]
-[ext_resource type="PackedScene" uid="uid://xjleq3a33bql" path="res://Prefabs/Debug/jump_prime_part.tscn" id="7_3tqhv"]
+[ext_resource type="PackedScene" path="res://Prefabs/Debug/jump_prime_part.tscn" id="7_3tqhv"]
 [ext_resource type="PackedScene" uid="uid://ctced2pcjsouu" path="res://Prefabs/Debug/grapple_prime_part.tscn" id="8_8fat0"]
-[ext_resource type="PackedScene" uid="uid://dxr3jv2xnd0w0" path="res://Prefabs/Debug/dash_prime_part.tscn" id="9_k585t"]
-[ext_resource type="PackedScene" uid="uid://hqqrdr23xnfn" path="res://Prefabs/Debug/battery_refill.tscn" id="10_rwwns"]
+[ext_resource type="PackedScene" path="res://Prefabs/Debug/dash_prime_part.tscn" id="9_k585t"]
+[ext_resource type="PackedScene" path="res://Prefabs/Debug/battery_refill.tscn" id="10_rwwns"]
 [ext_resource type="PackedScene" uid="uid://hul2610uwq5i" path="res://Prefabs/Debug/Platforms/goal_debug.tscn" id="12_oxs47"]
 [ext_resource type="Script" path="res://Scripts/DebugGoal.gd" id="13_rkn3t"]
 [ext_resource type="PackedScene" uid="uid://oyc37aw7qyik" path="res://Prefabs/Bob Roll.tscn" id="15_5debj"]
@@ -83,19 +83,19 @@ position = Vector2(-700, 800)
 script = ExtResource("13_rkn3t")
 
 [node name="Jump Part2" parent="." instance=ExtResource("6_ta4sf")]
-position = Vector2(3049, -1440)
+position = Vector2(4250, -2340)
 
 [node name="Speed Part2" parent="." instance=ExtResource("4_winbn")]
-position = Vector2(2249, -1440)
+position = Vector2(4150, -2340)
 
 [node name="Battery Part2" parent="." instance=ExtResource("5_qjlet")]
-position = Vector2(3376, -1825)
+position = Vector2(7600, -2760)
 
 [node name="Battery Part3" parent="." instance=ExtResource("10_rwwns")]
-position = Vector2(3850, -1440)
+position = Vector2(7600, -2800)
 
 [node name="Battery Part4" parent="." instance=ExtResource("10_rwwns")]
-position = Vector2(1550, -650)
+position = Vector2(1550, -810)
 
 [node name="Speed Part3" parent="." instance=ExtResource("4_winbn")]
 position = Vector2(-1300, -650)
@@ -243,7 +243,7 @@ patrolX = 400.0
 patrolTimeX = 4.0
 
 [node name="Battery Part9" parent="." instance=ExtResource("10_rwwns")]
-position = Vector2(3850, -1440)
+position = Vector2(4350, -2340)
 
 [node name="BobFloat6" parent="." instance=ExtResource("16_es5tc")]
 position = Vector2(2850, -90)
@@ -259,7 +259,7 @@ patrolTimeY = 3.0
 position = Vector2(9300, 1386)
 
 [node name="Battery Part7" parent="." instance=ExtResource("10_rwwns")]
-position = Vector2(9300, 1320)
+position = Vector2(9300, 1300)
 
 [node name="Charger7" parent="." instance=ExtResource("3_x0q75")]
 position = Vector2(7600, -2714)
@@ -291,60 +291,32 @@ patrolY = 100.0
 patrolTimeX = 4.0
 patrolTimeY = 1.0
 
-[node name="BobFloat10" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(-50, 1150)
-patrolX = 200.0
-patrolY = 100.0
-patrolTimeX = 8.0
-patrolTimeY = 15.0
-
 [node name="BobFloat12" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(1150, 1150)
-patrolX = 200.0
+position = Vector2(-250, 1150)
+patrolX = 1600.0
 patrolY = 100.0
-patrolTimeX = 8.0
-patrolTimeY = 15.0
-
-[node name="BobFloat14" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(2350, 1150)
-patrolX = 200.0
-patrolY = 100.0
-patrolTimeX = 8.0
+patrolTimeX = 16.0
 patrolTimeY = 15.0
 
 [node name="BobFloat16" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(3550, 1150)
-patrolX = 200.0
+position = Vector2(2150, 1150)
+patrolX = 1600.0
 patrolY = 100.0
-patrolTimeX = 8.0
-patrolTimeY = 15.0
-
-[node name="BobFloat18" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(4750, 1150)
-patrolX = 200.0
-patrolY = 100.0
-patrolTimeX = 8.0
+patrolTimeX = 16.0
 patrolTimeY = 15.0
 
 [node name="BobFloat20" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(5950, 1150)
-patrolX = 200.0
+position = Vector2(4550, 1150)
+patrolX = 1600.0
 patrolY = 100.0
-patrolTimeX = 8.0
-patrolTimeY = 15.0
-
-[node name="BobFloat22" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(7150, 1150)
-patrolX = 200.0
-patrolY = 100.0
-patrolTimeX = 8.0
+patrolTimeX = 16.0
 patrolTimeY = 15.0
 
 [node name="BobFloat24" parent="." instance=ExtResource("16_es5tc")]
-position = Vector2(8350, 1150)
-patrolX = 200.0
+position = Vector2(6950, 1150)
+patrolX = 1600.0
 patrolY = 100.0
-patrolTimeX = 8.0
+patrolTimeX = 16.0
 patrolTimeY = 15.0
 
 [node name="MoveAndJumpTut" parent="." instance=ExtResource("18_xyka4")]
@@ -354,3 +326,6 @@ offset_top = -82.0
 offset_right = -2127.0
 offset_bottom = -82.0
 scale = Vector2(0.5, 0.5)
+
+[node name="Battery Part8" parent="." instance=ExtResource("5_qjlet")]
+position = Vector2(9300, 1340)
