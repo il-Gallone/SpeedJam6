@@ -19,6 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o6p2n")
+id = "MoveJump"
 
 [node name="MoveSprite" type="Sprite2D" parent="."]
 position = Vector2(-200, 0)
