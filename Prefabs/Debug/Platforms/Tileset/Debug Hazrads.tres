@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://b56j1e7vcn8ag"]
 
-[ext_resource type="PhysicsMaterial" path="res://Prefabs/Debug/Platforms/Tileset/Hazard Terrain.tres" id="1_0w3q7"]
+[ext_resource type="PhysicsMaterial" uid="uid://ckmwfwmyhgkmg" path="res://Prefabs/Debug/Platforms/Tileset/Hazard Terrain.tres" id="1_0w3q7"]
 [ext_resource type="Texture2D" uid="uid://bblj6gyjepl2w" path="res://Art/Platforms/hazard_spritesheet.png" id="2_dq4yo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8mgeu"]

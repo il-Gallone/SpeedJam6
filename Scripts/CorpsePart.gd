@@ -1,4 +1,5 @@
 extends "res://Scripts/CollectableBase.gd"
+const corpsePrompt = preload("res://Prefabs/UI/CorpsePrompt.tscn")
 
 @export var speedAmount: int = 20
 @export var jumpAmount: int = -36
@@ -12,6 +13,9 @@ func _ready() -> void:
 	
 	
 func GraveRobbing(player):
+	var prompt = corpsePrompt.instantiate()
+	prompt.position = position - Vector2(0, 100)
+	get_tree().current_scene.add_child(prompt)
 	player.maxSpeed += upgradeAmount*speedAmount
 	player.speedParts += upgradeAmount
 	player.jumpSpeed += upgradeAmount*jumpAmount

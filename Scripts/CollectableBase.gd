@@ -6,7 +6,6 @@ const speedPrompt = preload("res://Prefabs/UI/SpeedPartPrompt.tscn")
 const jumpPrompt = preload("res://Prefabs/UI/JumpPartPrompt.tscn")
 const batteryPrompt = preload("res://Prefabs/UI/BatteryPartPrompt.tscn")
 const refillPrompt = preload("res://Prefabs/UI/RefillPrompt.tscn")
-const corpsePrompt = preload("res://Prefabs/UI/CorpsePrompt.tscn")
 
 @export var upgradeAmount: float
 enum upgradeType {SPEED, JUMP, BATTERY, REFILL, PRIME, CORPSE}
@@ -40,9 +39,6 @@ func OnPickup(player):
 		PrimeUpgrade(player)
 		queue_free()
 	if type == upgradeType.CORPSE:
-		var prompt = corpsePrompt.instantiate()
-		prompt.position = position - Vector2(0, 100)
-		get_tree().current_scene.add_child(prompt)
 		GraveRobbing(player)
 	if type == upgradeType.REFILL:
 		var prompt = refillPrompt.instantiate()
