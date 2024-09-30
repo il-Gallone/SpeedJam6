@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://b56j1e7vcn8ag"]
 
-[ext_resource type="PhysicsMaterial" path="res://Prefabs/Debug/Platforms/Tileset/Hazard Terrain.tres" id="1_0w3q7"]
+[ext_resource type="PhysicsMaterial" uid="uid://ckmwfwmyhgkmg" path="res://Prefabs/Debug/Platforms/Tileset/Hazard Terrain.tres" id="1_0w3q7"]
 [ext_resource type="Texture2D" uid="uid://c054ti2jouet" path="res://Art/Platforms/Debug/Basic Laser Tileset-Debug.png" id="1_pn13s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5o73f"]
