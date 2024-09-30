@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyyk3iojjg75c"]
+[gd_scene load_steps=4 format=3 uid="uid://cyyk3iojjg75c"]
 
-[ext_resource type="Script" path="res://Prefabs/UI/InputUI.gd" id="1_pqqea"]
+[ext_resource type="FontFile" uid="uid://b5d0jh3x3w2ud" path="res://Art/UI/hemi_head_bd_it.ttf" id="1_maxs3"]
+[ext_resource type="Script" path="res://Scripts/InputUI.gd" id="2_seb4o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2lbd7"]
+font = ExtResource("1_maxs3")
 font_size = 40
 font_color = Color(0, 0, 0, 1)
 shadow_size = 3
@@ -23,5 +25,5 @@ text = "RECHARGED"
 label_settings = SubResource("LabelSettings_2lbd7")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_pqqea")
+script = ExtResource("2_seb4o")
 id = "Part"

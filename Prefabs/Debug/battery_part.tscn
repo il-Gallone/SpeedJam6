@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhiiivcedrdpb"]
+[gd_scene load_steps=5 format=3 uid="uid://bhiiivcedrdpb"]
 
 [ext_resource type="Script" path="res://Scripts/Battery Part.gd" id="1_ephml"]
+[ext_resource type="PackedScene" uid="uid://buollo5ygyjm8" path="res://Prefabs/UI/BatteryPartPrompt.tscn" id="2_w5ekv"]
 [ext_resource type="Texture2D" uid="uid://d4a3bp06dry1a" path="res://Art/Misc/max_battery_highlight.png" id="2_yt1np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
@@ -8,6 +9,7 @@
 [node name="Battery Part" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ephml")
+batteryPrompt = ExtResource("2_w5ekv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2.5, 2.5)

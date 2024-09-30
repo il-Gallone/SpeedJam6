@@ -1,0 +1,162 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuklnc2lx41v1"]
+
+[ext_resource type="PackedScene" uid="uid://dgn6puyxi7al1" path="res://Prefabs/Bob Float.tscn" id="1_7oauo"]
+[ext_resource type="PackedScene" uid="uid://oyc37aw7qyik" path="res://Prefabs/Bob Roll.tscn" id="2_5g041"]
+
+[node name="Bobs" type="Node2D"]
+
+[node name="BobFloat" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(560, -40)
+patrolX = 60.0
+patrolY = 360.0
+patrolTimeX = 1.4
+patrolTimeY = 1.6
+
+[node name="BobFloat2" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(2020, -1560)
+patrolX = 400.0
+patrolTimeX = 4.0
+
+[node name="BobRoll2" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(2320, -1424)
+patrolX = 400.0
+
+[node name="BobRoll15" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(1720, -1424)
+patrolX = 400.0
+
+[node name="BobFloat3" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(2620, -1560)
+patrolX = 400.0
+patrolTimeX = 4.0
+
+[node name="BobRoll4" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(1220, -1824)
+patrolX = 1600.0
+patrolTimeX = 8.0
+
+[node name="BobFloat8" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(1720, -2140)
+patrolX = 800.0
+patrolY = 250.0
+patrolTimeX = 4.0
+patrolTimeY = 1.25
+
+[node name="BobRoll3" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(2920, -1424)
+patrolX = 400.0
+
+[node name="BobFloat4" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(3220, -1560)
+patrolX = 400.0
+patrolTimeX = 4.0
+
+[node name="BobRoll5" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(3520, -1424)
+patrolX = 400.0
+
+[node name="BobRoll6" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(5120, -2724)
+patrolX = 400.0
+
+[node name="BobRoll7" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(5320, -2724)
+patrolX = 400.0
+
+[node name="BobRoll8" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(5520, -2724)
+patrolX = 400.0
+
+[node name="BobRoll9" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(5720, -2724)
+patrolX = 400.0
+
+[node name="BobRoll10" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(5920, -2724)
+patrolX = 400.0
+
+[node name="BobRoll11" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(6120, -2724)
+patrolX = 400.0
+
+[node name="BobRoll12" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(6322, -2724)
+patrolX = 400.0
+
+[node name="BobRoll13" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(6522, -2724)
+patrolX = 400.0
+
+[node name="BobRoll14" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(6720, -2724)
+patrolX = 400.0
+
+[node name="BobFloat5" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(3820, -1560)
+patrolX = 400.0
+patrolTimeX = 4.0
+
+[node name="BobFloat6" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(2850, -90)
+patrolY = 600.0
+patrolTimeY = 3.0
+
+[node name="BobFloat7" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(3550, -90)
+patrolY = 600.0
+patrolTimeY = 3.0
+
+[node name="BobRoll" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(7720, -2224)
+patrolX = 400.0
+patrolTimeX = 3.0
+
+[node name="BobRoll16" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(8020, -1724)
+patrolX = 400.0
+patrolTimeX = 3.0
+
+[node name="BobRoll17" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(7720, -1224)
+patrolX = 400.0
+patrolTimeX = 3.0
+
+[node name="BobRoll18" parent="." instance=ExtResource("2_5g041")]
+position = Vector2(8020, -724)
+patrolX = 400.0
+patrolTimeX = 3.0
+
+[node name="BobFloat9" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(8040, -460)
+patrolX = 600.0
+patrolY = 100.0
+patrolTimeX = 4.0
+patrolTimeY = 1.0
+
+[node name="BobFloat12" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(-250, 1150)
+patrolX = 1600.0
+patrolY = 100.0
+patrolTimeX = 16.0
+patrolTimeY = 15.0
+
+[node name="BobFloat16" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(2150, 1150)
+patrolX = 1600.0
+patrolY = 100.0
+patrolTimeX = 16.0
+patrolTimeY = 15.0
+
+[node name="BobFloat20" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(4550, 1150)
+patrolX = 1600.0
+patrolY = 100.0
+patrolTimeX = 16.0
+patrolTimeY = 15.0
+
+[node name="BobFloat24" parent="." instance=ExtResource("1_7oauo")]
+position = Vector2(6950, 1150)
+patrolX = 1600.0
+patrolY = 100.0
+patrolTimeX = 16.0
+patrolTimeY = 15.0

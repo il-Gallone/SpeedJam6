@@ -52,17 +52,16 @@ func _authentication_request():
 		player_session_exists = true
 		
 	## Convert data to json string:
-	var data = { "game_key": game_API_key, "game_version": "0.0.0.1", "development_mode": true }
+	var data = { "game_key": game_API_key, "game_version": "0.1.0.0", "development_mode": true }
 	
 	# If a player session already exists, send with the player identifier
 	if(player_session_exists == true):
-		data = { "game_key": game_API_key, "player_identifier":player_identifier, "game_version": "0.1.0.0", "development_mode": false }
+		data = { "game_key": game_API_key, "player_identifier":player_identifier, "game_version": "0.1.0.0", "development_mode": true }
 	
 	# Add 'Content-Type' header:
 	var headers = ["Content-Type: application/json"]
 	
 	# Create a HTTPRequest node for authentication
-	auth_http = HTTPRequest.new()
 	add_child(auth_http)
 	auth_http.request_completed.connect(_on_authentication_request_completed)
 	# Send request

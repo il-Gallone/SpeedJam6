@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Hazard
+
 @export var damage: float
 
 func _ready() -> void:

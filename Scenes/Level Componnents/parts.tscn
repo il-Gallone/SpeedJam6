@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxco2cnostc44"]
+
+[ext_resource type="PackedScene" uid="uid://boojp04ggg7c" path="res://Prefabs/Debug/speed_part.tscn" id="1_moy78"]
+[ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="2_4oeh7"]
+[ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="3_bflag"]
+[ext_resource type="PackedScene" uid="uid://xjleq3a33bql" path="res://Prefabs/Debug/jump_prime_part.tscn" id="4_qjrb2"]
+[ext_resource type="PackedScene" uid="uid://ctced2pcjsouu" path="res://Prefabs/Debug/grapple_prime_part.tscn" id="5_i26gs"]
+[ext_resource type="PackedScene" uid="uid://dxr3jv2xnd0w0" path="res://Prefabs/Debug/dash_prime_part.tscn" id="6_4qs50"]
+[ext_resource type="PackedScene" uid="uid://hqqrdr23xnfn" path="res://Prefabs/Debug/battery_refill.tscn" id="7_gac05"]
+
+[node name="Parts" type="Node2D"]
+
+[node name="Speed Part" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(2250, 260)
+
+[node name="Battery Part" parent="." instance=ExtResource("2_4oeh7")]
+position = Vector2(1750, 260)
+
+[node name="Jump Part" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(1950, 560)
+
+[node name="Jump Prime Part" parent="." instance=ExtResource("4_qjrb2")]
+position = Vector2(-150, 840)
+
+[node name="Grapple Prime Part" parent="." instance=ExtResource("5_i26gs")]
+position = Vector2(5150, -60)
+
+[node name="Dash Prime Part" parent="." instance=ExtResource("6_4qs50")]
+position = Vector2(2100, -60)
+
+[node name="Jump Prime Part2" parent="." instance=ExtResource("4_qjrb2")]
+position = Vector2(-2400, -410)
+
+[node name="Jump Part2" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(4250, -2340)
+
+[node name="Speed Part2" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(4150, -2340)
+
+[node name="Battery Part2" parent="." instance=ExtResource("2_4oeh7")]
+position = Vector2(7600, -2760)
+
+[node name="Battery Part3" parent="." instance=ExtResource("7_gac05")]
+position = Vector2(7600, -2800)
+
+[node name="Battery Part4" parent="." instance=ExtResource("7_gac05")]
+position = Vector2(1550, -810)
+
+[node name="Speed Part3" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(-1300, -650)
+
+[node name="Battery Part5" parent="." instance=ExtResource("7_gac05")]
+position = Vector2(6750, -640)
+
+[node name="Speed Part4" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(6350, 260)
+
+[node name="Jump Part3" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(6750, -40)
+
+[node name="Speed Part5" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(850, -2440)
+
+[node name="Speed Part7" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(950, -2440)
+
+[node name="Speed Part8" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(1150, -2440)
+
+[node name="Speed Part9" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(1050, -2440)
+
+[node name="Jump Part4" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(900, -2440)
+
+[node name="Jump Part5" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(1100, -2440)
+
+[node name="Battery Part6" parent="." instance=ExtResource("7_gac05")]
+position = Vector2(1000, -2440)
+
+[node name="Speed Part6" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(1750, -2440)
+
+[node name="Speed Part10" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(1850, -2440)
+
+[node name="Speed Part11" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(2050, -2440)
+
+[node name="Speed Part12" parent="." instance=ExtResource("1_moy78")]
+position = Vector2(1950, -2440)
+
+[node name="Jump Part6" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(1800, -2440)
+
+[node name="Jump Part7" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(2000, -2440)
+
+[node name="Battery Part10" parent="." instance=ExtResource("7_gac05")]
+position = Vector2(1900, -2440)
+
+[node name="Battery Part9" parent="." instance=ExtResource("7_gac05")]
+position = Vector2(4350, -2340)
+
+[node name="Battery Part7" parent="." instance=ExtResource("7_gac05")]
+position = Vector2(9300, 1300)
+
+[node name="Battery Part8" parent="." instance=ExtResource("2_4oeh7")]
+position = Vector2(9300, 1340)
+
+[node name="Jump Part8" parent="." instance=ExtResource("3_bflag")]
+position = Vector2(6050, 260)

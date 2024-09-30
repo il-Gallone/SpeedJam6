@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctced2pcjsouu"]
+[gd_scene load_steps=5 format=3 uid="uid://ctced2pcjsouu"]
 
 [ext_resource type="Script" path="res://Scripts/Grapple Prime Part.gd" id="1_ptoh8"]
 [ext_resource type="Texture2D" uid="uid://bos8yp0xp7bye" path="res://Art/Misc/grappling_hook_highlight.png" id="2_bt4ux"]
+[ext_resource type="PackedScene" uid="uid://b5htqbo5ni32c" path="res://Prefabs/UI/GrappleTut.tscn" id="2_c3pbe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
 [node name="Grapple Prime Part" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ptoh8")
+grappleTut = ExtResource("2_c3pbe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)

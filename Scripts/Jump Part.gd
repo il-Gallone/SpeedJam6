@@ -1,4 +1,4 @@
-extends "res://Scripts/CollectableBase.gd"
+extends CollectableBase
 
 
 # Called when the node enters the scene tree for the first time.

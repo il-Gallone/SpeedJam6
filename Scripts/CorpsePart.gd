@@ -1,5 +1,6 @@
-extends "res://Scripts/CollectableBase.gd"
-const corpsePrompt = preload("res://Prefabs/UI/CorpsePrompt.tscn")
+extends CollectableBase
+
+@export var corpsePrompt: Resource
 
 @export var speedAmount: int = 20
 @export var jumpAmount: int = -36

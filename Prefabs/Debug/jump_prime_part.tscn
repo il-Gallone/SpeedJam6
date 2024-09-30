@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://xjleq3a33bql"]
+[gd_scene load_steps=6 format=3 uid="uid://xjleq3a33bql"]
 
 [ext_resource type="Script" path="res://Scripts/Jump Prime Part.gd" id="1_4l8xe"]
 [ext_resource type="Texture2D" uid="uid://b8yk3isqibn5k" path="res://Art/Misc/double_jump_highlight.png" id="2_2tbc6"]
+[ext_resource type="PackedScene" uid="uid://jxkjn8dw6ybg" path="res://Prefabs/UI/AirJumpTut.tscn" id="2_u45mi"]
+[ext_resource type="PackedScene" uid="uid://0bb2u72qcvm0" path="res://Prefabs/UI/AirJumpPrompt.tscn" id="3_llwx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
 [node name="Jump Prime Part" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4l8xe")
+jumpTut = ExtResource("2_u45mi")
+airJumpPrompt = ExtResource("3_llwx1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)

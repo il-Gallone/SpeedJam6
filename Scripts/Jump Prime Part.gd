@@ -1,7 +1,7 @@
-extends "res://Scripts/CollectableBase.gd"
+extends CollectableBase
 
-const jumpTut = preload("res://Prefabs/UI/AirJumpTut.tscn")
-const airJumpPrompt = preload("res://Prefabs/UI/AirJumpPrompt.tscn")
+@export var jumpTut: Resource
+@export var airJumpPrompt: Resource
 
 
 # Called when the node enters the scene tree for the first time.

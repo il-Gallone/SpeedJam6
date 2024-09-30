@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const PlayerCorpse = preload("res://Prefabs/PlayerCorpse.tscn")
-const JumpParticle = preload("res://Prefabs/jumpParticle.tscn")
-const DashParticle = preload("res://Prefabs/DashParticle.tscn")
+@export var PlayerCorpse: Resource
+@export var JumpParticle: Resource
+@export var DashParticle: Resource
 
 @export_category("Movement Parameters")
 @export var maxSpeed: float = 400.0
@@ -36,7 +36,7 @@ var isHookReturning: bool = false
 var isHookReady: bool = false
 var hookRopeLength: float = 0.0
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 1500.0
 
 var speedParts = 0
 var jumpParts = 0

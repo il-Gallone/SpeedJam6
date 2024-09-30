@@ -2,10 +2,10 @@ extends Area2D
 
 class_name CollectableBase
 
-const speedPrompt = preload("res://Prefabs/UI/SpeedPartPrompt.tscn")
-const jumpPrompt = preload("res://Prefabs/UI/JumpPartPrompt.tscn")
-const batteryPrompt = preload("res://Prefabs/UI/BatteryPartPrompt.tscn")
-const refillPrompt = preload("res://Prefabs/UI/RefillPrompt.tscn")
+@export var speedPrompt: Resource
+@export var jumpPrompt: Resource
+@export var batteryPrompt: Resource
+@export var refillPrompt: Resource
 
 @export var upgradeAmount: float
 enum upgradeType {SPEED, JUMP, BATTERY, REFILL, PRIME, CORPSE}

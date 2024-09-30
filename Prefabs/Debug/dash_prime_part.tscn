@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxr3jv2xnd0w0"]
+[gd_scene load_steps=5 format=3 uid="uid://dxr3jv2xnd0w0"]
 
 [ext_resource type="Script" path="res://Scripts/Dash Prime Part.gd" id="1_oeaau"]
 [ext_resource type="Texture2D" uid="uid://milu3p6g4127" path="res://Art/Misc/dash_highlight.png" id="2_f6tmy"]
+[ext_resource type="PackedScene" uid="uid://cbym3578qtu6l" path="res://Prefabs/UI/DashTut.tscn" id="2_r70xm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
-[node name="Dash Prime Part" type="Area2D"]
+[node name="Grapple Prime Part" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_oeaau")
+dashTut = ExtResource("2_r70xm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)

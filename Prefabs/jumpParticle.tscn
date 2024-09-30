@@ -6,29 +6,29 @@
 [ext_resource type="Texture2D" uid="uid://wk0lv1bjenc7" path="res://Art/Character/JumpAni/Double/4.png" id="4_f3fyx"]
 [ext_resource type="Script" path="res://Scripts/particle.gd" id="5_id85k"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_w5nn7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xk8p"]
 animations = [{
 "frames": [{
-"duration": 0.5,
+"duration": 1.0,
 "texture": ExtResource("1_n0lp0")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": ExtResource("2_daaat")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": ExtResource("3_qxd8s")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": ExtResource("4_f3fyx")
 }],
 "loop": false,
 "name": &"default",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [node name="JumpParticle" type="AnimatedSprite2D"]
 scale = Vector2(0.1, 0.1)
-sprite_frames = SubResource("SpriteFrames_w5nn7")
+sprite_frames = SubResource("SpriteFrames_3xk8p")
 script = ExtResource("5_id85k")
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

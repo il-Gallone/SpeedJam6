@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr6bpwbvcarwt"]
+
+[ext_resource type="PackedScene" uid="uid://d11wkxool2ak6" path="res://Prefabs/Debug/charger.tscn" id="1_1jasf"]
+
+[node name="Chargers" type="Node2D"]
+
+[node name="Charger" parent="." instance=ExtResource("1_1jasf")]
+position = Vector2(-2500, 136)
+
+[node name="Charger2" parent="." instance=ExtResource("1_1jasf")]
+position = Vector2(-150, 886)
+
+[node name="Charger3" parent="." instance=ExtResource("1_1jasf")]
+position = Vector2(2100, -14)
+
+[node name="Charger4" parent="." instance=ExtResource("1_1jasf")]
+position = Vector2(5150, -14)
+
+[node name="Charger5" parent="." instance=ExtResource("1_1jasf")]
+position = Vector2(-2400, -364)
+
+[node name="Charger6" parent="." instance=ExtResource("1_1jasf")]
+position = Vector2(9300, 1386)
+
+[node name="Charger7" parent="." instance=ExtResource("1_1jasf")]
+position = Vector2(7600, -2714)

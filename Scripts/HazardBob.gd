@@ -1,4 +1,4 @@
-extends "res://Scripts/Hazard.gd"
+extends Hazard
 
 @export var patrolX: float
 @export var patrolY: float

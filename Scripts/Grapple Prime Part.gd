@@ -1,7 +1,6 @@
-extends "res://Scripts/CollectableBase.gd"
+extends CollectableBase
 
-
-const grappleTut = preload("res://Prefabs/UI/GrappleTut.tscn")
+@export var grappleTut : Resource
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	type = upgradeType.PRIME

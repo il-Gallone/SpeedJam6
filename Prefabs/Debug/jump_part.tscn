@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c25vep2sugvsh"]
+[gd_scene load_steps=5 format=3 uid="uid://c25vep2sugvsh"]
 
 [ext_resource type="Script" path="res://Scripts/Jump Part.gd" id="1_8178s"]
 [ext_resource type="Texture2D" uid="uid://c5evipf86wspp" path="res://Art/Misc/piston_highlight.png" id="2_e2svw"]
+[ext_resource type="PackedScene" uid="uid://bu66bdjnlxvw1" path="res://Prefabs/UI/JumpPartPrompt.tscn" id="2_jeiu3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xny8t"]
 
 [node name="Jump Part" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_8178s")
+jumpPrompt = ExtResource("2_jeiu3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2.5, 2.5)

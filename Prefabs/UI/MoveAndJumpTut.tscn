@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dujwv8eitrnks"]
+[gd_scene load_steps=6 format=3 uid="uid://dujwv8eitrnks"]
 
-[ext_resource type="Script" path="res://Prefabs/UI/InputUI.gd" id="1_o6p2n"]
+[ext_resource type="Script" path="res://Scripts/InputUI.gd" id="1_3wne6"]
 [ext_resource type="Texture2D" uid="uid://bsy63ia3pb8my" path="res://Art/UI/Move_Buttons.png" id="2_ee7qn"]
 [ext_resource type="Texture2D" uid="uid://hrlugu3amawy" path="res://Art/UI/Jump_Buttons.png" id="3_ucysq"]
+[ext_resource type="FontFile" uid="uid://b5d0jh3x3w2ud" path="res://Art/UI/hemi_head_bd_it.ttf" id="4_2aexx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xoiby"]
+font = ExtResource("4_2aexx")
 font_size = 60
 font_color = Color(0.34, 0.34, 0.34, 1)
 shadow_size = 9
@@ -18,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_o6p2n")
+script = ExtResource("1_3wne6")
 id = "MoveJump"
 
 [node name="MoveSprite" type="Sprite2D" parent="."]

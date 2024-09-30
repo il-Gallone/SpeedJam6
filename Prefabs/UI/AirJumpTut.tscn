@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://jxkjn8dw6ybg"]
+[gd_scene load_steps=5 format=3 uid="uid://jxkjn8dw6ybg"]
 
-[ext_resource type="Script" path="res://Prefabs/UI/InputUI.gd" id="1_mvxnq"]
+[ext_resource type="Script" path="res://Scripts/InputUI.gd" id="1_d64u4"]
 [ext_resource type="Texture2D" uid="uid://hrlugu3amawy" path="res://Art/UI/Jump_Buttons.png" id="2_lvgir"]
+[ext_resource type="FontFile" uid="uid://b5d0jh3x3w2ud" path="res://Art/UI/hemi_head_bd_it.ttf" id="3_djixl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2w2tk"]
+font = ExtResource("3_djixl")
 font_size = 60
 font_color = Color(0.34, 0.34, 0.34, 1)
 shadow_size = 9
@@ -19,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_mvxnq")
+script = ExtResource("1_d64u4")
 id = "AirJump1"
 
 [node name="JumpSprite" type="Sprite2D" parent="."]

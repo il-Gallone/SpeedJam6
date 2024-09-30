@@ -1,51 +1,68 @@
-[gd_scene load_steps=27 format=3 uid="uid://cpa7wun6uuoyc"]
+[gd_scene load_steps=37 format=3 uid="uid://cpa7wun6uuoyc"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_dbbsw"]
-[ext_resource type="Texture2D" uid="uid://u7qjxy6dbhnn" path="res://Art/UI/battery_frame.png" id="2_m5au6"]
+[ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="2_4wohx"]
+[ext_resource type="PackedScene" uid="uid://fqjbpavwggji" path="res://Prefabs/PlayerCorpse.tscn" id="2_gwxxp"]
 [ext_resource type="Texture2D" uid="uid://da0dpt8tbv0hn" path="res://Art/Character/grappling_hook.png" id="2_us7fd"]
-[ext_resource type="Script" path="res://Scripts/MaxBatteryBar.gd" id="3_hjca7"]
-[ext_resource type="Texture2D" uid="uid://o4w11y2b3m5k" path="res://Art/UI/battery_bg.png" id="3_v1ok3"]
-[ext_resource type="Script" path="res://Scripts/MaxBatteryBorder.gd" id="3_w0guf"]
-[ext_resource type="SpriteFrames" uid="uid://d05db5k2yworl" path="res://Art/Character/Character Sprite.tres" id="4_cqb5w"]
-[ext_resource type="Script" path="res://Scripts/BatteryBar.gd" id="4_rj5qj"]
-[ext_resource type="Script" path="res://Scripts/TimeLeaderboard.gd" id="8_x60i7"]
-[ext_resource type="Script" path="res://Scripts/Timer.gd" id="9_qambf"]
-[ext_resource type="Texture2D" uid="uid://dg2ugqoylqqe6" path="res://Art/UI/input_bg.png" id="9_t35mx"]
-[ext_resource type="Texture2D" uid="uid://lpdj5pd31jt2" path="res://Art/UI/inputframe_idle.png" id="11_uq84o"]
-[ext_resource type="Script" path="res://Scripts/AuthenticationHold.gd" id="13_ggqvd"]
-[ext_resource type="Texture2D" uid="uid://rl3qot8kbe8k" path="res://Art/UI/menu_panel.png" id="13_tsosy"]
-[ext_resource type="Texture2D" uid="uid://8nm0wcbuf6g3" path="res://Art/UI/button_idle.png" id="14_emsr3"]
-[ext_resource type="Texture2D" uid="uid://g5n1m7x1fjix" path="res://Art/UI/leaderboard_frame.png" id="16_og04g"]
-[ext_resource type="Texture2D" uid="uid://b31kyx7qxaa74" path="res://Art/UI/leaderboard_bg.png" id="17_5j0rc"]
+[ext_resource type="PackedScene" uid="uid://83xbskqnhuym" path="res://Prefabs/jumpParticle.tscn" id="3_ll5nf"]
+[ext_resource type="Texture2D" uid="uid://u7qjxy6dbhnn" path="res://Art/UI/battery_frame.png" id="3_qkgv6"]
+[ext_resource type="PackedScene" uid="uid://daga2cq6rby50" path="res://Prefabs/DashParticle.tscn" id="4_a8e5p"]
+[ext_resource type="Script" path="res://Scripts/MaxBatteryBorder.gd" id="4_ndkif"]
+[ext_resource type="Texture2D" uid="uid://o4w11y2b3m5k" path="res://Art/UI/battery_bg.png" id="5_avq4t"]
+[ext_resource type="Script" path="res://Scripts/MaxBatteryBar.gd" id="6_01egy"]
+[ext_resource type="Script" path="res://Scripts/BatteryBar.gd" id="7_mqakh"]
+[ext_resource type="FontFile" uid="uid://b5d0jh3x3w2ud" path="res://Art/UI/hemi_head_bd_it.ttf" id="8_glab7"]
+[ext_resource type="Script" path="res://Scripts/TimeLeaderboard.gd" id="9_xhne6"]
+[ext_resource type="Texture2D" uid="uid://8nm0wcbuf6g3" path="res://Art/UI/button_idle.png" id="10_ec4pv"]
+[ext_resource type="Texture2D" uid="uid://dg2ugqoylqqe6" path="res://Art/UI/input_bg.png" id="11_qi61f"]
+[ext_resource type="Script" path="res://Scripts/Timer.gd" id="12_qw5jy"]
+[ext_resource type="Texture2D" uid="uid://lpdj5pd31jt2" path="res://Art/UI/inputframe_idle.png" id="13_3ko17"]
+[ext_resource type="Script" path="res://Scripts/AuthenticationHold.gd" id="14_dfimm"]
+[ext_resource type="Texture2D" uid="uid://rl3qot8kbe8k" path="res://Art/UI/menu_panel.png" id="15_4vy5p"]
+[ext_resource type="Texture2D" uid="uid://g5n1m7x1fjix" path="res://Art/UI/leaderboard_frame.png" id="16_y6gq4"]
+[ext_resource type="Texture2D" uid="uid://b31kyx7qxaa74" path="res://Art/UI/leaderboard_bg.png" id="17_pp4bt"]
+[ext_resource type="AudioStream" uid="uid://2m7v6shdvj4r" path="res://Sound/Music/SJ6Industrial_Final.wav" id="19_nxvfc"]
+[ext_resource type="AudioStream" uid="uid://bn22oftn4j0t6" path="res://Sound/Character/sound_player_jump.wav" id="20_onufl"]
+[ext_resource type="AudioStream" uid="uid://dr6i3p5jph00o" path="res://Sound/Character/sound_player_thrust.wav" id="21_27eqt"]
+[ext_resource type="AudioStream" uid="uid://bfx7lo1njlt43" path="res://Sound/Character/sound_player_step_a.wav" id="22_cm7jm"]
+[ext_resource type="SpriteFrames" uid="uid://jmcrhx4npw" path="res://Art/Character/Character Sprite Compat.tres" id="22_paaav"]
+[ext_resource type="AudioStream" uid="uid://cpc6ptq44lut" path="res://Sound/Character/sound_player_step_b.wav" id="23_p5jem"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_edsji"]
+[sub_resource type="LabelSettings" id="LabelSettings_0y5yl"]
+font = ExtResource("8_glab7")
 font_size = 40
 font_color = Color(0.0728427, 0.0728426, 0.0728427, 0.6)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4vrwg"]
+[sub_resource type="LabelSettings" id="LabelSettings_wahat"]
+font = ExtResource("8_glab7")
 font_size = 40
 font_color = Color(1, 1, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_uqboh"]
+[sub_resource type="LabelSettings" id="LabelSettings_mq6ly"]
+font = ExtResource("8_glab7")
 font_size = 60
 
-[sub_resource type="LabelSettings" id="LabelSettings_v3whq"]
+[sub_resource type="LabelSettings" id="LabelSettings_mgvhe"]
+font = ExtResource("8_glab7")
 font_size = 40
 font_color = Color(1, 1, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_n1glf"]
+[sub_resource type="LabelSettings" id="LabelSettings_mvvcc"]
+font = ExtResource("8_glab7")
 font_size = 35
 font_color = Color(1, 1, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_d7e72"]
+[sub_resource type="LabelSettings" id="LabelSettings_cis8u"]
+font = ExtResource("8_glab7")
 font_size = 40
 font_color = Color(0, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_w020l"]
+[sub_resource type="LabelSettings" id="LabelSettings_autrg"]
+font = ExtResource("8_glab7")
 font_size = 35
 font_color = Color(0, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wefj"]
 
@@ -55,27 +72,13 @@ scale = Vector2(0.5, 0.5)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_dbbsw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(7, 9)
-shape = SubResource("RectangleShape2D_a58jo")
-
-[node name="GrapplingHook" type="RayCast2D" parent="."]
-position = Vector2(-42, -35)
-target_position = Vector2(0, 0)
-
-[node name="Rope" type="Line2D" parent="GrapplingHook"]
-z_index = 1
-points = PackedVector2Array(0, 0, 0, 0)
-
-[node name="Grapple" type="Sprite2D" parent="GrapplingHook"]
-z_index = 2
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_us7fd")
-offset = Vector2(-5, -150)
+PlayerCorpse = ExtResource("2_gwxxp")
+JumpParticle = ExtResource("3_ll5nf")
+DashParticle = ExtResource("4_a8e5p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -64)
+script = ExtResource("2_4wohx")
 
 [node name="BatteryBorder" type="NinePatchRect" parent="Camera2D"]
 z_index = 98
@@ -83,18 +86,18 @@ offset_left = -1522.0
 offset_top = -942.0
 offset_right = -968.0
 offset_bottom = -726.0
-texture = ExtResource("2_m5au6")
+texture = ExtResource("3_qkgv6")
 patch_margin_left = 30
 patch_margin_right = 153
-script = ExtResource("3_w0guf")
+script = ExtResource("4_ndkif")
 
 [node name="BatteryMax" type="TextureRect" parent="Camera2D"]
 offset_left = -1500.0
 offset_top = -920.0
 offset_right = -1000.0
 offset_bottom = -744.0
-texture = ExtResource("3_v1ok3")
-script = ExtResource("3_hjca7")
+texture = ExtResource("5_avq4t")
+script = ExtResource("6_01egy")
 
 [node name="Battery" type="ColorRect" parent="Camera2D"]
 z_index = 100
@@ -103,7 +106,7 @@ offset_top = -920.0
 offset_right = -1000.0
 offset_bottom = -744.0
 color = Color(0.536697, 0.972733, 1, 1)
-script = ExtResource("4_rj5qj")
+script = ExtResource("7_mqakh")
 
 [node name="Leaderboard" type="TextEdit" parent="Camera2D"]
 anchors_preset = 8
@@ -117,10 +120,11 @@ offset_right = 20.0
 offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_glab7")
 theme_override_font_sizes/font_size = 40
 placeholder_text = "Enter Name"
 editable = false
-script = ExtResource("8_x60i7")
+script = ExtResource("9_xhne6")
 
 [node name="SubmitButton" type="Button" parent="Camera2D"]
 offset_left = 50.0
@@ -128,7 +132,7 @@ offset_top = -220.0
 offset_right = 440.0
 offset_bottom = -59.0
 scale = Vector2(0.7, 0.7)
-icon = ExtResource("14_emsr3")
+icon = ExtResource("10_ec4pv")
 flat = true
 
 [node name="ButtonLabel" type="Label" parent="Camera2D/SubmitButton"]
@@ -138,7 +142,7 @@ offset_top = 50.0
 offset_right = 296.0
 offset_bottom = 105.0
 text = "SUBMIT"
-label_settings = SubResource("LabelSettings_edsji")
+label_settings = SubResource("LabelSettings_0y5yl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -149,7 +153,7 @@ offset_top = -920.0
 offset_right = 1596.0
 offset_bottom = -791.0
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("9_t35mx")
+texture = ExtResource("11_qi61f")
 
 [node name="Label" type="Label" parent="Camera2D/Timer"]
 z_index = 99
@@ -160,10 +164,10 @@ offset_right = 195.0
 offset_bottom = 85.0
 scale = Vector2(1.3, 1.3)
 text = "00:00:00"
-label_settings = SubResource("LabelSettings_4vrwg")
+label_settings = SubResource("LabelSettings_wahat")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("9_qambf")
+script = ExtResource("12_qw5jy")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/Timer"]
 z_index = 100
@@ -172,7 +176,7 @@ offset_left = -60.0
 offset_top = -10.0
 offset_right = 322.0
 offset_bottom = 143.0
-texture = ExtResource("11_uq84o")
+texture = ExtResource("13_3ko17")
 
 [node name="TitleScreen" type="ColorRect" parent="Camera2D"]
 z_index = 300
@@ -181,7 +185,7 @@ offset_top = -1030.0
 offset_right = 1600.0
 offset_bottom = 770.0
 color = Color(0.35826, 0.468992, 0.496813, 1)
-script = ExtResource("13_ggqvd")
+script = ExtResource("14_dfimm")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/TitleScreen"]
 layout_mode = 0
@@ -189,7 +193,7 @@ offset_left = 1200.0
 offset_top = 550.0
 offset_right = 2000.0
 offset_bottom = 1050.0
-texture = ExtResource("13_tsosy")
+texture = ExtResource("15_4vy5p")
 patch_margin_left = 125
 patch_margin_top = 125
 patch_margin_right = 125
@@ -202,7 +206,7 @@ offset_top = 200.0
 offset_right = 700.0
 offset_bottom = 300.0
 text = "AUTHENTICATING"
-label_settings = SubResource("LabelSettings_uqboh")
+label_settings = SubResource("LabelSettings_mq6ly")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -212,7 +216,7 @@ offset_left = 1420.0
 offset_top = 1100.0
 offset_right = 1810.0
 offset_bottom = 1261.0
-icon = ExtResource("14_emsr3")
+icon = ExtResource("10_ec4pv")
 flat = true
 
 [node name="ButtonLabel" type="Label" parent="Camera2D/TitleScreen/Button"]
@@ -222,7 +226,7 @@ offset_top = 55.0
 offset_right = 303.0
 offset_bottom = 110.0
 text = "CONTINUE"
-label_settings = SubResource("LabelSettings_edsji")
+label_settings = SubResource("LabelSettings_0y5yl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -232,7 +236,7 @@ offset_left = -1100.0
 offset_top = -600.0
 offset_right = -402.0
 offset_bottom = 221.0
-texture = ExtResource("16_og04g")
+texture = ExtResource("16_y6gq4")
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/Leaderboard Display Top"]
 z_index = -1
@@ -241,7 +245,7 @@ offset_left = 20.0
 offset_top = 220.0
 offset_right = 686.0
 offset_bottom = 806.0
-texture = ExtResource("17_5j0rc")
+texture = ExtResource("17_pp4bt")
 
 [node name="Label" type="Label" parent="Camera2D/Leaderboard Display Top"]
 layout_mode = 0
@@ -250,7 +254,7 @@ offset_top = 160.0
 offset_right = 500.0
 offset_bottom = 210.0
 text = "TOP PLAYERS"
-label_settings = SubResource("LabelSettings_v3whq")
+label_settings = SubResource("LabelSettings_mgvhe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -271,7 +275,7 @@ text = "1 - NAME - XX:XX:XX
 9 - NAME - XX:XX:XX
 10 - NAME - XX:XX:XX
 "
-label_settings = SubResource("LabelSettings_n1glf")
+label_settings = SubResource("LabelSettings_mvvcc")
 horizontal_alignment = 1
 
 [node name="Leaderboard Display Personal" type="TextureRect" parent="Camera2D"]
@@ -280,7 +284,7 @@ offset_left = 402.0
 offset_top = -600.0
 offset_right = 1100.0
 offset_bottom = 221.0
-texture = ExtResource("16_og04g")
+texture = ExtResource("16_y6gq4")
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/Leaderboard Display Personal"]
 z_index = -1
@@ -289,7 +293,7 @@ offset_left = 20.0
 offset_top = 220.0
 offset_right = 686.0
 offset_bottom = 806.0
-texture = ExtResource("17_5j0rc")
+texture = ExtResource("17_pp4bt")
 
 [node name="Label" type="Label" parent="Camera2D/Leaderboard Display Personal"]
 layout_mode = 0
@@ -298,7 +302,7 @@ offset_top = 160.0
 offset_right = 500.0
 offset_bottom = 210.0
 text = "YOUR RANKING"
-label_settings = SubResource("LabelSettings_d7e72")
+label_settings = SubResource("LabelSettings_cis8u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -319,8 +323,26 @@ text = "1 - NAME - XX:XX:XX
 9 - NAME - XX:XX:XX
 10 - NAME - XX:XX:XX
 "
-label_settings = SubResource("LabelSettings_w020l")
+label_settings = SubResource("LabelSettings_autrg")
 horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7, 9)
+shape = SubResource("RectangleShape2D_a58jo")
+
+[node name="GrapplingHook" type="RayCast2D" parent="."]
+position = Vector2(-42, -35)
+target_position = Vector2(0, 0)
+
+[node name="Rope" type="Line2D" parent="GrapplingHook"]
+z_index = 1
+points = PackedVector2Array(0, 0, 0, 0)
+
+[node name="Grapple" type="Sprite2D" parent="GrapplingHook"]
+z_index = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_us7fd")
+offset = Vector2(-5, -150)
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -330,8 +352,37 @@ shape = SubResource("RectangleShape2D_8wefj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-sprite_frames = ExtResource("4_cqb5w")
+sprite_frames = ExtResource("22_paaav")
 animation = &"Death"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_nxvfc")
+bus = &"Music"
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_onufl")
+bus = &"SFX"
+
+[node name="Dash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_27eqt")
+bus = &"SFX"
+
+[node name="Step_A" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_cm7jm")
+bus = &"SFX"
+
+[node name="Step_B" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_p5jem")
+bus = &"SFX"
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="PrimePart" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Part" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [connection signal="pressed" from="Camera2D/SubmitButton" to="Camera2D/Leaderboard" method="_on_submit_button_pressed"]
 [connection signal="pressed" from="Camera2D/TitleScreen/Button" to="." method="_on_button_pressed"]
