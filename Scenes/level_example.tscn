@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://boojp04ggg7c" path="res://Prefabs/Debug/speed_part.tscn" id="4_winbn"]
 [ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="5_qjlet"]
 [ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="6_ta4sf"]
-[ext_resource type="PackedScene" path="res://Prefabs/Debug/jump_prime_part.tscn" id="7_3tqhv"]
+[ext_resource type="PackedScene" uid="uid://xjleq3a33bql" path="res://Prefabs/Debug/jump_prime_part.tscn" id="7_3tqhv"]
 [ext_resource type="PackedScene" uid="uid://ctced2pcjsouu" path="res://Prefabs/Debug/grapple_prime_part.tscn" id="8_8fat0"]
-[ext_resource type="PackedScene" path="res://Prefabs/Debug/dash_prime_part.tscn" id="9_k585t"]
-[ext_resource type="PackedScene" path="res://Prefabs/Debug/battery_refill.tscn" id="10_rwwns"]
+[ext_resource type="PackedScene" uid="uid://dxr3jv2xnd0w0" path="res://Prefabs/Debug/dash_prime_part.tscn" id="9_k585t"]
+[ext_resource type="PackedScene" uid="uid://hqqrdr23xnfn" path="res://Prefabs/Debug/battery_refill.tscn" id="10_rwwns"]
 [ext_resource type="PackedScene" uid="uid://hul2610uwq5i" path="res://Prefabs/Debug/Platforms/goal_debug.tscn" id="12_oxs47"]
 [ext_resource type="Script" path="res://Scripts/DebugGoal.gd" id="13_rkn3t"]
 [ext_resource type="PackedScene" uid="uid://oyc37aw7qyik" path="res://Prefabs/Bob Roll.tscn" id="15_5debj"]
@@ -25,6 +25,7 @@ tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAA
 tile_set = ExtResource("1_sun1f")
 
 [node name="Hazards" type="TileMapLayer" parent="."]
+scale = Vector2(0.25, 0.25)
 tile_map_data = PackedByteArray("AAA9APr/AQACAAAAAAAQAPr/AQAAAAAAAAARAPr/AQABAAAAAAASAPr/AQABAAAAAAATAPr/AQABAAAAAAAUAPr/AQABAAAAAAAVAPr/AQABAAAAAAAWAPr/AQABAAAAAAAXAPr/AQABAAAAAAAYAPr/AQABAAAAAAAZAPr/AQABAAAAAAAaAPr/AQABAAAAAAAbAPr/AQABAAAAAAAcAPr/AQABAAAAAAAdAPr/AQABAAAAAAAeAPr/AQABAAAAAAAfAPr/AQABAAAAAAAgAPr/AQABAAAAAAAhAPr/AQABAAAAAAAiAPr/AQABAAAAAAAjAPr/AQABAAAAAAAkAPr/AQABAAAAAAAlAPr/AQABAAAAAAAmAPr/AQABAAAAAAAnAPr/AQABAAAAAAAoAPr/AQABAAAAAAApAPr/AQABAAAAAAAqAPr/AQABAAAAAAArAPr/AQABAAAAAAAsAPr/AQABAAAAAAAtAPr/AQABAAAAAAAuAPr/AQABAAAAAAAvAPr/AQABAAAAAAAwAPr/AQABAAAAAAAxAPr/AQABAAAAAAAyAPr/AQABAAAAAAAzAPr/AQABAAAAAAA0APr/AQABAAAAAAA1APr/AQABAAAAAAA2APr/AQABAAAAAAA3APr/AQABAAAAAAA4APr/AQABAAAAAAA5APr/AQABAAAAAAA6APr/AQABAAAAAAA7APr/AQABAAAAAAA8APr/AQABAAAAAADy//j/AQABAAAAAADz//j/AQABAAAAAAD1//j/AQACAAAAAADw//j/AQAAAAAAAADx//j/AQABAAAAAAD0//j/AQABAAAAAADv//T/AQAAAAAAAADw//T/AQABAAAAAADx//T/AQABAAAAAADy//T/AQABAAAAAADz//T/AQABAAAAAAD0//T/AQABAAAAAAD1//T/AQABAAAAAAD2//T/AQABAAAAAAD3//T/AQABAAAAAAD4//T/AQABAAAAAAD5//T/AQABAAAAAAD6//T/AQABAAAAAAD7//T/AQABAAAAAAD8//T/AQABAAAAAAD9//T/AQABAAAAAAD+//T/AQABAAAAAAD///T/AQABAAAAAAAAAPT/AQABAAAAAAABAPT/AQABAAAAAAACAPT/AQABAAAAAAADAPT/AQABAAAAAAAEAPT/AQABAAAAAAAFAPT/AQABAAAAAAAGAPT/AQABAAAAAAAHAPT/AQABAAAAAAAIAPT/AQACAAAAAAA=")
 tile_set = ExtResource("2_bnlpn")
 rendering_quadrant_size = 100
