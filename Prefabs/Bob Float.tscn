@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgn6puyxi7al1"]
+[gd_scene load_steps=12 format=3 uid="uid://dgn6puyxi7al1"]
 
 [ext_resource type="Script" path="res://Scripts/HazardBob.gd" id="1_76b0s"]
 [ext_resource type="Texture2D" uid="uid://orlhur1vsk41" path="res://Art/Character/Bob_Float/Bob_Float_1.png" id="1_h22id"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bhptkjdi0602j" path="res://Art/Character/Bob_Float/Bob_Float_6.png" id="6_uon5s"]
 [ext_resource type="Texture2D" uid="uid://dejrs3w5acd0y" path="res://Art/Character/Bob_Float/Bob_Float_7.png" id="7_b6ydp"]
 [ext_resource type="Texture2D" uid="uid://ctlyua2d2yd0w" path="res://Art/Character/Bob_Float/Bob_Float_8.png" id="8_amp35"]
-[ext_resource type="AudioStream" uid="uid://cgf43htdp7jxf" path="res://Sound/Misc/sound_player_hit.ogg" id="10_tmep7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5k4o"]
 
@@ -65,7 +64,3 @@ shape = SubResource("RectangleShape2D_a5k4o")
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_qi4o8")
 animation = &"Float"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_tmep7")
-bus = &"SFX"

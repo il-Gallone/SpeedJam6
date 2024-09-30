@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://ckeb03r4xo6sy"]
+[gd_scene load_steps=18 format=4 uid="uid://ckeb03r4xo6sy"]
 
 [ext_resource type="PackedScene" uid="uid://cpa7wun6uuoyc" path="res://Prefabs/player.tscn" id="1_0gmqe"]
 [ext_resource type="TileSet" uid="uid://c47udwqypxsp5" path="res://Prefabs/Metal Platform Tileset.tres" id="1_sun1f"]
 [ext_resource type="TileSet" uid="uid://b56j1e7vcn8ag" path="res://Prefabs/Debug/Platforms/Tileset/Debug Hazrads.tres" id="2_bnlpn"]
 [ext_resource type="Script" path="res://Scripts/Hazard.gd" id="3_jodvl"]
 [ext_resource type="PackedScene" uid="uid://d11wkxool2ak6" path="res://Prefabs/Debug/charger.tscn" id="3_x0q75"]
-[ext_resource type="AudioStream" uid="uid://bjf1cgno455qj" path="res://Sound/Misc/sound_laser_hit.ogg" id="4_vvgjh"]
 [ext_resource type="PackedScene" uid="uid://boojp04ggg7c" path="res://Prefabs/Debug/speed_part.tscn" id="4_winbn"]
 [ext_resource type="PackedScene" uid="uid://bhiiivcedrdpb" path="res://Prefabs/Debug/battery_part.tscn" id="5_qjlet"]
 [ext_resource type="PackedScene" uid="uid://c25vep2sugvsh" path="res://Prefabs/Debug/jump_part.tscn" id="6_ta4sf"]
@@ -33,10 +32,6 @@ tile_set = ExtResource("2_bnlpn")
 rendering_quadrant_size = 100
 script = ExtResource("3_jodvl")
 damage = 75.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Hazards"]
-stream = ExtResource("4_vvgjh")
-bus = &"SFX"
 
 [node name="Player" parent="." instance=ExtResource("1_0gmqe")]
 z_index = 1
