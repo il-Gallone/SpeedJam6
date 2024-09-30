@@ -222,7 +222,6 @@ offset_left = 1420.0
 offset_top = 1100.0
 offset_right = 1810.0
 offset_bottom = 1261.0
-theme_override_fonts/font = ExtResource("10_e1fti")
 icon = ExtResource("14_emsr3")
 flat = true
 
