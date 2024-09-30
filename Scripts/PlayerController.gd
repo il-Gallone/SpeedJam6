@@ -161,6 +161,7 @@ func _physics_process(delta: float) -> void:
 						battery -= 15
 						dashCD = dashTime
 						isDashing = true
+						$Dash.play()
 						var newParticle = DashParticle.instantiate()
 						if animatedSprite.flip_h:
 							newParticle.position = Vector2(112, -16)
