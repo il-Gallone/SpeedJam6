@@ -187,7 +187,7 @@ func _physics_process(delta: float) -> void:
 			for i in get_slide_collision_count():
 				var collision = get_slide_collision(i)
 				if collision.get_collider().has_method("DamagePlayer"):
-					velocity = previousVel.bounce(collision.get_normal())*1.2
+					velocity = (previousVel.bounce(collision.get_normal())).normalized()*-jumpSpeed
 					if isHooked:
 						isHooked = false
 						isHookReturning = true
