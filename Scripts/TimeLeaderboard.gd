@@ -137,7 +137,9 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 		match OS.get_name():
 			"HTML5", "Windows", "X11":
 				if json.get_data().items[n].member_id == OS.get_unique_id():
-					foundPlayer = true
+					if !foundPlayer:
+						foundPlayer = true
+						leaderboardPersonalFormatted = ""
 					var timeScore
 					var timeMinutes: int
 					var timeSeconds: int
