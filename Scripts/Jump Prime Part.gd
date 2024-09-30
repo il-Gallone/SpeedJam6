@@ -17,7 +17,7 @@ func PrimeUpgrade(player):
 	
 func DisplayDoubleJumpTutorial():
 	var tut = jumpTut.instantiate()
-	tut.position = position - Vector2(0, 100)
+	tut.position = position - Vector2(0, 300)
 	get_tree().current_scene.add_child(tut)
 	
 func DisplayAirJumpPrompt():
