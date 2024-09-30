@@ -346,3 +346,11 @@ patrolX = 200.0
 patrolY = 100.0
 patrolTimeX = 8.0
 patrolTimeY = 15.0
+
+[node name="MoveAndJumpTut" parent="." instance=ExtResource("18_xyka4")]
+z_index = -5
+offset_left = -2127.0
+offset_top = -82.0
+offset_right = -2127.0
+offset_bottom = -82.0
+scale = Vector2(0.5, 0.5)
