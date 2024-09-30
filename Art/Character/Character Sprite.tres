@@ -1,10 +1,15 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://d05db5k2yworl"]
+[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://d05db5k2yworl"]
 
 [ext_resource type="Texture2D" uid="uid://pfuqf7bfnjig" path="res://Art/Character/JumpAni/7.png" id="1_yphyo"]
+[ext_resource type="Texture2D" uid="uid://cdrbngd20bn2s" path="res://Art/Character/DeathAni/1.png" id="1_yps1l"]
+[ext_resource type="Texture2D" uid="uid://u3ns8emoxqee" path="res://Art/Character/DeathAni/2.png" id="2_kj530"]
 [ext_resource type="Texture2D" uid="uid://cki36i1ca182v" path="res://Art/Character/JumpAni/6.png" id="2_t2xyk"]
 [ext_resource type="Texture2D" uid="uid://u0ux1tisvdia" path="res://Art/Character/JumpAni/1.png" id="3_8sjou"]
+[ext_resource type="Texture2D" uid="uid://evp3xdnb3pp5" path="res://Art/Character/DeathAni/3.png" id="3_tne2r"]
 [ext_resource type="Texture2D" uid="uid://bhy4alwteqxfg" path="res://Art/Character/JumpAni/2.png" id="4_affvy"]
+[ext_resource type="Texture2D" uid="uid://bq6ryw1qh3n8m" path="res://Art/Character/DeathAni/4.png" id="4_juwyo"]
 [ext_resource type="Texture2D" uid="uid://c1kuweagqak5d" path="res://Art/Character/JumpAni/3.png" id="5_1u8oy"]
+[ext_resource type="Texture2D" uid="uid://c6gchy8olytfq" path="res://Art/Character/DeathAni/5.png" id="5_ea01x"]
 [ext_resource type="Texture2D" uid="uid://djvf08c1joim5" path="res://Art/Character/JumpAni/4.png" id="6_mljoa"]
 [ext_resource type="Texture2D" uid="uid://cmc54asbt5cwq" path="res://Art/Character/JumpAni/5.png" id="7_hb1mb"]
 [ext_resource type="Texture2D" uid="uid://cilivnhmlf13w" path="res://Art/Character/JumpAni/9.png" id="9_ha6gg"]
@@ -19,6 +24,26 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yps1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kj530")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tne2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_juwyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ea01x")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_yphyo")

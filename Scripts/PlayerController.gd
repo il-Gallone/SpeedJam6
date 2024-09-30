@@ -209,8 +209,8 @@ func _physics_process(delta: float) -> void:
 				
 
 func Death()-> void:
-	#TODO Death Animation
-	pass
+	animatedSprite.play("Death")
+	velocity = Vector2.ZERO
 	
 func Respawn() -> void:
 	var lowestPartCount = 5

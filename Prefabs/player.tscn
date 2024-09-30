@@ -344,7 +344,7 @@ shape = SubResource("RectangleShape2D_8wefj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("4_cqb5w")
-animation = &"WalkCycle"
+animation = &"Death"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_hdr51")
