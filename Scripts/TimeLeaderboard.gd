@@ -144,6 +144,8 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 					for m in n:
 						if m == 0:
 							m = n -9
+							if m < 0:
+								m = 0
 						if json.get_data().items[m]:
 							leaderboardTopFormatted += str(json.get_data().items[m].rank)+str(". ")
 							leaderboardTopFormatted += str(json.get_data().items[m].metadata)+str(" - ")
@@ -152,12 +154,6 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 							timeSeconds = floor(timeScore - timeMinutes * 60)
 							timeMilliseconds = ((timeScore - timeMinutes * 60)-timeSeconds)*100
 							leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
-					leaderboardTopFormatted += str(json.get_data().items[n].rank)+str(". ")
-					leaderboardTopFormatted += str(json.get_data().items[n].metadata)+str(" - ")
-					timeScore = json.get_data().items[n].score / 1000
-					timeSeconds = floor(timeScore - timeMinutes * 60)
-					timeMilliseconds = ((timeScore - timeMinutes * 60)-timeSeconds)*100
-					leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
 				else:
 					leaderboardPersonalFormatted = "Not Ranked"
 	get_parent().find_child("PersonalRankings").text = leaderboardPersonalFormatted
@@ -184,7 +180,6 @@ func _upload_score(score: int):
 			submit_score_http.request("https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/submit", headers, HTTPClient.METHOD_POST, JSON.stringify(data))
 			# Print what we're sending, for debugging purposes:
 			print(data)
-	_get_leaderboards()
 
 func _change_player_name():
 	print("Changing player name")
@@ -250,4 +245,5 @@ func _on_submit_button_pressed() -> void:
 	get_parent().find_child("Leaderboard Display Top").show()
 	get_parent().find_child("Leaderboard Display Personal").show()
 	_upload_score(score*1000)
+	_get_leaderboards()
 	
