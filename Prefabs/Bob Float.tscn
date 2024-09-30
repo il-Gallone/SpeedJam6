@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgn6puyxi7al1"]
+
+[ext_resource type="Texture2D" uid="uid://orlhur1vsk41" path="res://Art/Character/Bob_Float/Bob_Float_1.png" id="1_h22id"]
+[ext_resource type="Texture2D" uid="uid://ivw733nrt6xa" path="res://Art/Character/Bob_Float/Bob_Float_2.png" id="2_5x1cv"]
+[ext_resource type="Texture2D" uid="uid://bv1jnraaow3cf" path="res://Art/Character/Bob_Float/Bob_Float_3.png" id="3_vq0df"]
+[ext_resource type="Texture2D" uid="uid://dtsckplfuepq4" path="res://Art/Character/Bob_Float/Bob_Float_4.png" id="4_cjofp"]
+[ext_resource type="Texture2D" uid="uid://b7codt6dwrlsd" path="res://Art/Character/Bob_Float/Bob_Float_5.png" id="5_hwgfs"]
+[ext_resource type="Texture2D" uid="uid://bhptkjdi0602j" path="res://Art/Character/Bob_Float/Bob_Float_6.png" id="6_uon5s"]
+[ext_resource type="Texture2D" uid="uid://dejrs3w5acd0y" path="res://Art/Character/Bob_Float/Bob_Float_7.png" id="7_b6ydp"]
+[ext_resource type="Texture2D" uid="uid://ctlyua2d2yd0w" path="res://Art/Character/Bob_Float/Bob_Float_8.png" id="8_amp35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5k4o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qi4o8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h22id")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5x1cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vq0df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cjofp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hwgfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uon5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b6ydp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_amp35")
+}],
+"loop": true,
+"name": &"Float",
+"speed": 5.0
+}]
+
+[node name="BobFloat" type="AnimatableBody2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4.3, 4.3)
+shape = SubResource("RectangleShape2D_a5k4o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_qi4o8")
+animation = &"Float"
