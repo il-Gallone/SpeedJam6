@@ -30,11 +30,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_edsji"]
+font = ExtResource("10_e1fti")
 font_size = 40
 font_color = Color(0.0728427, 0.0728426, 0.0728427, 0.6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4vrwg"]
-font = ExtResource("10_e1fti")
 font_size = 40
 font_color = Color(1, 1, 0, 1)
 
@@ -43,18 +43,22 @@ font = ExtResource("10_e1fti")
 font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_v3whq"]
+font = ExtResource("10_e1fti")
 font_size = 40
 font_color = Color(1, 1, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_n1glf"]
+font = ExtResource("10_e1fti")
 font_size = 35
 font_color = Color(1, 1, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d7e72"]
+font = ExtResource("10_e1fti")
 font_size = 40
 font_color = Color(0, 1, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_w020l"]
+font = ExtResource("10_e1fti")
 font_size = 35
 font_color = Color(0, 1, 1, 1)
 
