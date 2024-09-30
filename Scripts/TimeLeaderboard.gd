@@ -148,14 +148,13 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 							m = n -9
 							if m < 0:
 								m = 0
-						leaderboardTopFormatted += str(json.get_data().items[m].rank)+str(". ")
-						leaderboardTopFormatted += str(json.get_data().items[m].metadata)+str(" - ")
+						leaderboardPersonalFormatted += str(json.get_data().items[m].rank)+str(". ")
+						leaderboardPersonalFormatted += str(json.get_data().items[m].metadata)+str(" - ")
 						timeScore = json.get_data().items[m].score / 1000
 						timeMinutes = floor(timeScore/60)
 						timeSeconds = floor(timeScore - timeMinutes * 60)
 						timeMilliseconds = ((timeScore - timeMinutes * 60)-timeSeconds)*100
-						leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
-						
+						leaderboardPersonalFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
 				elif !foundPlayer:
 					leaderboardPersonalFormatted = "Not Ranked"
 	get_parent().find_child("PersonalRankings").text = leaderboardPersonalFormatted
