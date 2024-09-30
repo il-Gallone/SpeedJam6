@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 					battery -= 1 * delta
 				if is_on_floor():
 					if isCharging:
-						battery += 250 * delta
+						battery += 400 * delta
 						if battery > maxBattery:
 							battery = maxBattery
 					if isInAir:

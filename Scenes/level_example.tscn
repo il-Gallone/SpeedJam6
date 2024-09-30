@@ -36,13 +36,13 @@ position = Vector2(-2518, 89)
 position = Vector2(-2518, 142)
 
 [node name="Speed Part" parent="." instance=ExtResource("4_winbn")]
-position = Vector2(2246, 253)
+position = Vector2(2249, 251)
 
 [node name="Battery Part" parent="." instance=ExtResource("5_qjlet")]
-position = Vector2(2856, 405)
+position = Vector2(1749, 251)
 
 [node name="Jump Part" parent="." instance=ExtResource("6_ta4sf")]
-position = Vector2(907, 854)
+position = Vector2(1953, 549)
 
 [node name="Jump Prime Part" parent="." instance=ExtResource("7_3tqhv")]
 position = Vector2(-155, 841)
