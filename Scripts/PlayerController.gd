@@ -203,9 +203,6 @@ func _physics_process(delta: float) -> void:
 			
 			if battery <= 0:
 				Death()
-		else:
-			if animatedSprite.animation != "Death":
-				Respawn()
 				
 
 func Death()-> void:
@@ -364,6 +361,8 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animatedSprite.animation == "Landing":
 		animatedSprite.play("Idle")
+	if animatedSprite.animation == "Death":
+		Respawn()
 
 
 func _on_audio_stream_player_finished() -> void:
