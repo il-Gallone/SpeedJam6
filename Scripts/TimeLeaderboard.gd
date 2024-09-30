@@ -132,29 +132,31 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 	# Print the formatted leaderboard to the console
 	get_parent().find_child("TopRankings").text = leaderboardTopFormatted
 	
+	var foundPlayer = false
 	for n in json.get_data().items.size():
 		match OS.get_name():
 			"HTML5", "Windows", "X11":
 				if json.get_data().items[n].member_id == OS.get_unique_id():
+					foundPlayer = true
 					var timeScore
 					var timeMinutes: int
 					var timeSeconds: int
 					var timeMilliseconds: int
 					var timeFormat = "%02d:%02d:%02d \n"
-					for m in n:
+					for m in n+1:
 						if m == 0:
 							m = n -9
 							if m < 0:
 								m = 0
-						if json.get_data().items[m]:
-							leaderboardTopFormatted += str(json.get_data().items[m].rank)+str(". ")
-							leaderboardTopFormatted += str(json.get_data().items[m].metadata)+str(" - ")
-							timeScore = json.get_data().items[m].score / 1000
-							timeMinutes = floor(timeScore/60)
-							timeSeconds = floor(timeScore - timeMinutes * 60)
-							timeMilliseconds = ((timeScore - timeMinutes * 60)-timeSeconds)*100
-							leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
-				else:
+						leaderboardTopFormatted += str(json.get_data().items[m].rank)+str(". ")
+						leaderboardTopFormatted += str(json.get_data().items[m].metadata)+str(" - ")
+						timeScore = json.get_data().items[m].score / 1000
+						timeMinutes = floor(timeScore/60)
+						timeSeconds = floor(timeScore - timeMinutes * 60)
+						timeMilliseconds = ((timeScore - timeMinutes * 60)-timeSeconds)*100
+						leaderboardTopFormatted += timeFormat % [timeMinutes, timeSeconds, timeMilliseconds]
+						
+				elif !foundPlayer:
 					leaderboardPersonalFormatted = "Not Ranked"
 	get_parent().find_child("PersonalRankings").text = leaderboardPersonalFormatted
 							

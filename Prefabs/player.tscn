@@ -157,6 +157,7 @@ texture = ExtResource("9_t35mx")
 
 [node name="Label" type="Label" parent="Camera2D/Timer"]
 z_index = 99
+layout_mode = 0
 offset_left = 5.0
 offset_top = 25.0
 offset_right = 195.0
@@ -307,6 +308,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PersonalRankings" type="Label" parent="Camera2D/Leaderboard Display Personal"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 270.0
 offset_right = 650.0
