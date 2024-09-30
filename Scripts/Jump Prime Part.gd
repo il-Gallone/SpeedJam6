@@ -1,7 +1,7 @@
 extends "res://Scripts/CollectableBase.gd"
 
 const jumpTut = preload("res://Prefabs/UI/AirJumpTut.tscn")
-const jumpPrompt = preload("res://Prefabs/UI/AirJumpPrompt.tscn")
+const airJumpPrompt = preload("res://Prefabs/UI/AirJumpPrompt.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +21,6 @@ func DisplayDoubleJumpTutorial():
 	get_tree().current_scene.add_child(tut)
 	
 func DisplayAirJumpPrompt():
-	var tut = jumpTut.instantiate()
-	tut.position = position - Vector2(0, 100)
-	get_tree().current_scene.add_child(tut)
+	var prompt = airJumpPrompt.instantiate()
+	prompt.position = position - Vector2(0, 100)
+	get_tree().current_scene.add_child(prompt)
