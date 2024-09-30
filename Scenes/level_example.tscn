@@ -67,16 +67,16 @@ position = Vector2(-2903, -1)
 script = ExtResource("13_rkn3t")
 
 [node name="Jump Part2" parent="." instance=ExtResource("6_ta4sf")]
-position = Vector2(2907, -1513)
+position = Vector2(3049, -1449)
 
 [node name="Speed Part2" parent="." instance=ExtResource("4_winbn")]
-position = Vector2(2881, -1455)
+position = Vector2(2251, -1445)
 
 [node name="Battery Part2" parent="." instance=ExtResource("5_qjlet")]
-position = Vector2(2946, -1459)
+position = Vector2(3376, -1825)
 
 [node name="Battery Part3" parent="." instance=ExtResource("10_rwwns")]
-position = Vector2(4197, -1603)
+position = Vector2(3851, -1456)
 
 [node name="Battery Part4" parent="." instance=ExtResource("10_rwwns")]
 position = Vector2(247, -442)
@@ -86,3 +86,9 @@ position = Vector2(-1301, -666)
 
 [node name="Battery Part5" parent="." instance=ExtResource("10_rwwns")]
 position = Vector2(6740, -660)
+
+[node name="Speed Part4" parent="." instance=ExtResource("4_winbn")]
+position = Vector2(6351, 251)
+
+[node name="Jump Part3" parent="." instance=ExtResource("6_ta4sf")]
+position = Vector2(6756, -48)
