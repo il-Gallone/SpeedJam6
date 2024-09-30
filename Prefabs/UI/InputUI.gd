@@ -45,6 +45,6 @@ func _process(delta: float) -> void:
 	else:
 		Fadeout()
 
-func Fadeout() -> void:
+func Fadeout():
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 4)
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 1)
