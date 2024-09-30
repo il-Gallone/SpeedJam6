@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 const PlayerCorpse = preload("res://Prefabs/PlayerCorpse.tscn")
+const JumpParticle = preload("res://Prefabs/jumpParticle.tscn")
+const DashParticle = preload("res://Prefabs/DashParticle.tscn")
 
 @export_category("Movement Parameters")
 @export var maxSpeed: float = 400.0
@@ -154,8 +156,15 @@ func _physics_process(delta: float) -> void:
 						battery -= 15
 						dashCD = dashTime
 						isDashing = true
+						var newParticle = DashParticle.instantiate()
+						if animatedSprite.flip_h:
+							newParticle.position = Vector2(112, -16)
+							newParticle.flip_h = true
+						else:
+							newParticle.position = Vector2(-112, -16)
+						self.add_child(newParticle)
 				
-				if Input.is_action_just_pressed("jump"):
+				if Input.is_action_just_pressed("jump") && !isHooked:
 					if jumpsAvailable > 0:
 						Jump()
 					else:
@@ -237,6 +246,11 @@ func Jump()-> void:
 	battery -= 10
 	jumpsAvailable -= 1
 	animatedSprite.play("Jump")
+	if !is_on_floor():
+		var newParticle = JumpParticle.instantiate()
+		newParticle.position = Vector2(0, 116)
+		self.add_child(newParticle)
+		
 	
 func Dash(delta)-> void:
 	velocity.x += facingDir*acceleration*2*delta

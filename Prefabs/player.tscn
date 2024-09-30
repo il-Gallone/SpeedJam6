@@ -336,7 +336,7 @@ shape = SubResource("RectangleShape2D_8wefj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("4_cqb5w")
-animation = &"WalkCycle"
+animation = &"Idle"
 
 [connection signal="pressed" from="Camera2D/SubmitButton" to="Camera2D/Leaderboard" method="_on_submit_button_pressed"]
 [connection signal="pressed" from="Camera2D/TitleScreen/Button" to="Camera2D/TitleScreen" method="_on_button_pressed"]

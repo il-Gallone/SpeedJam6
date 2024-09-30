@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://daga2cq6rby50"]
+
+[ext_resource type="Script" path="res://Scripts/particle.gd" id="1_hrlbg"]
+[ext_resource type="Texture2D" uid="uid://c7bfwo4yt0m3f" path="res://Art/Character/DashAni/Dash_1.png" id="1_y7hh0"]
+[ext_resource type="Texture2D" uid="uid://c2e4auojeglj2" path="res://Art/Character/DashAni/Dash_5.png" id="2_obadk"]
+[ext_resource type="Texture2D" uid="uid://cnvi1hq20yxyd" path="res://Art/Character/DashAni/Dash_4.png" id="3_7cvvu"]
+[ext_resource type="Texture2D" uid="uid://bsqorxuy4jhxg" path="res://Art/Character/DashAni/Dash_2.png" id="4_lrgtn"]
+[ext_resource type="Texture2D" uid="uid://b78qejlr175r1" path="res://Art/Character/DashAni/Dash_3.png" id="5_758sr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a63fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y7hh0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_obadk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7cvvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lrgtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_758sr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_y7hh0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_obadk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7cvvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lrgtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_758sr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="DashParticle" type="AnimatedSprite2D"]
+z_index = -1
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_a63fn")
+script = ExtResource("1_hrlbg")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
