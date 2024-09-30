@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cpa7wun6uuoyc"]
+[gd_scene load_steps=35 format=3 uid="uid://cpa7wun6uuoyc"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_dbbsw"]
 [ext_resource type="Texture2D" uid="uid://u7qjxy6dbhnn" path="res://Art/UI/battery_frame.png" id="2_m5au6"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Scripts/TimeLeaderboard.gd" id="8_x60i7"]
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="9_qambf"]
 [ext_resource type="Texture2D" uid="uid://dg2ugqoylqqe6" path="res://Art/UI/input_bg.png" id="9_t35mx"]
-[ext_resource type="FontFile" uid="uid://nilmuqj0ssuv" path="res://Art/UI/hemi head bd it.otf" id="10_e1fti"]
 [ext_resource type="Texture2D" uid="uid://lpdj5pd31jt2" path="res://Art/UI/inputframe_idle.png" id="11_uq84o"]
 [ext_resource type="Script" path="res://Scripts/AuthenticationHold.gd" id="13_ggqvd"]
 [ext_resource type="Texture2D" uid="uid://rl3qot8kbe8k" path="res://Art/UI/menu_panel.png" id="13_tsosy"]
@@ -137,7 +136,6 @@ offset_top = -220.0
 offset_right = 440.0
 offset_bottom = -59.0
 scale = Vector2(0.7, 0.7)
-theme_override_fonts/font = ExtResource("10_e1fti")
 icon = ExtResource("14_emsr3")
 flat = true
 
