@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	if Input.get_connected_joypads().size() > 0:
 		inputType = Input.get_joy_name(0)
 	else:
-		inputType + "MKB"
+		inputType = "MKB"
 	if id == "MoveJump":
 		Sprite = $MoveSprite
 		Sprite2 = $JumpSprite
