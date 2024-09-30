@@ -182,7 +182,7 @@ func _physics_process(delta: float) -> void:
 					isHookFlying = true
 					isHookReady = false
 					
-				if !Input.is_action_pressed("grapple") && !isHookReturning:
+				if !Input.is_action_pressed("grapple") && isHooked:
 					isHookReturning = true
 					isHooked = false
 					isHookFlying = false
@@ -229,7 +229,8 @@ func Respawn() -> void:
 		refill.Respawn()
 	position = lastCheckpoint.global_position
 	velocity = Vector2.ZERO
-	HookReset()
+	if isHookFlying or isHooked or isHookReturning:
+		HookReset()
 	
 func LostParts(partCount, type):
 	if type == "speed" or type == "all":

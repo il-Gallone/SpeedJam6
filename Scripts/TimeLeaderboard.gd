@@ -2,7 +2,7 @@ extends TextEdit
 
 # Use this game API key if you want to test with a functioning leaderboard
 # "987dbd0b9e5eb3749072acc47a210996eea9feb0"
-var game_API_key = "dev_0b9fb3100aa046a6b6660541ca0221ee"
+var game_API_key = "prod_d1f378bbad314d5b92fd2d9a1f1a9f07"
 var development_mode = true
 var leaderboard_key = "fastestTime"
 var session_token = ""
@@ -52,11 +52,11 @@ func _authentication_request():
 		player_session_exists = true
 		
 	## Convert data to json string:
-	var data = { "game_key": game_API_key, "game_version": "0.1.0.0", "development_mode": true }
+	var data = { "game_key": game_API_key, "game_version": "0.1.0.0", "development_mode": false }
 	
 	# If a player session already exists, send with the player identifier
 	if(player_session_exists == true):
-		data = { "game_key": game_API_key, "player_identifier":player_identifier, "game_version": "0.1.0.0", "development_mode": true }
+		data = { "game_key": game_API_key, "player_identifier":player_identifier, "game_version": "0.1.0.0", "development_mode": false }
 	
 	# Add 'Content-Type' header:
 	var headers = ["Content-Type: application/json"]
