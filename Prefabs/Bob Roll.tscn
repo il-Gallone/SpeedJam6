@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://daj0m35x4va3t"]
+
+[ext_resource type="Texture2D" uid="uid://ddq8vuy2n64ii" path="res://Art/Character/Bob_Roll/Bob_Roll_1.png" id="1_sw1i6"]
+[ext_resource type="Texture2D" uid="uid://b7bemgh8jqln5" path="res://Art/Character/Bob_Roll/Bob_Roll_2.png" id="2_3ruuf"]
+[ext_resource type="Texture2D" uid="uid://c2t5apfsl3fan" path="res://Art/Character/Bob_Roll/Bob_Roll_3.png" id="3_t7qo5"]
+[ext_resource type="Texture2D" uid="uid://ds1jjcs5gtayf" path="res://Art/Character/Bob_Roll/Bob_Roll_4.png" id="4_jphb1"]
+[ext_resource type="Texture2D" uid="uid://dqq8i8glko04t" path="res://Art/Character/Bob_Roll/Bob_Roll_5.png" id="5_03xjd"]
+[ext_resource type="Texture2D" uid="uid://o1qnba37ffuo" path="res://Art/Character/Bob_Roll/Bob_Roll_6.png" id="6_rbvlm"]
+[ext_resource type="Texture2D" uid="uid://dtktygqern3oe" path="res://Art/Character/Bob_Roll/Bob_Roll_Turn.png" id="7_qh7ad"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5k4o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qi4o8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sw1i6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3ruuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t7qo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jphb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_03xjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rbvlm")
+}],
+"loop": true,
+"name": &"Roll",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qh7ad")
+}],
+"loop": true,
+"name": &"Turn",
+"speed": 5.0
+}]
+
+[node name="BobRoll" type="AnimatableBody2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4.3, 4.3)
+shape = SubResource("RectangleShape2D_a5k4o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_qi4o8")
+animation = &"Roll"
