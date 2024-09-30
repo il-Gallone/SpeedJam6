@@ -88,6 +88,7 @@ func _physics_process(delta: float) -> void:
 							battery = maxBattery
 					if isInAir:
 						animatedSprite.play("Landing")
+						$Land.play()
 						isInAir = false
 					jumpsAvailable = maxJumpsAvailable
 					if !animatedSprite.animation == "Landing":
@@ -96,6 +97,10 @@ func _physics_process(delta: float) -> void:
 						else:
 							animatedSprite.play("WalkCycle")
 							animatedSprite.speed_scale = abs(velocity.x/200)
+							if animatedSprite.frame == 2:
+								$Step_A.play()
+							if animatedSprite.frame == 5:
+								$Step_B.play()
 					if jumpBuffer:
 						Jump()
 						jumpBuffer = false
@@ -242,6 +247,7 @@ func LostParts(partCount, type):
 					
 func Jump()-> void:
 	isInAir = true
+	$Jump.play()
 	velocity.y = jumpSpeed
 	battery -= 10
 	jumpsAvailable -= 1
@@ -357,3 +363,11 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animatedSprite.animation == "Landing":
 		animatedSprite.play("Idle")
+
+
+func _on_audio_stream_player_finished() -> void:
+	$Music.play()
+
+
+func _on_button_pressed() -> void:
+	$Music.play()

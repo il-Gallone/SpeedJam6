@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cpa7wun6uuoyc"]
+[gd_scene load_steps=35 format=3 uid="uid://cpa7wun6uuoyc"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_dbbsw"]
 [ext_resource type="Texture2D" uid="uid://u7qjxy6dbhnn" path="res://Art/UI/battery_frame.png" id="2_m5au6"]
@@ -18,6 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://8nm0wcbuf6g3" path="res://Art/UI/button_idle.png" id="14_emsr3"]
 [ext_resource type="Texture2D" uid="uid://g5n1m7x1fjix" path="res://Art/UI/leaderboard_frame.png" id="16_og04g"]
 [ext_resource type="Texture2D" uid="uid://b31kyx7qxaa74" path="res://Art/UI/leaderboard_bg.png" id="17_5j0rc"]
+[ext_resource type="AudioStream" uid="uid://ccheg276astn1" path="res://Sound/Music/SJ6Industrial_Final.ogg" id="19_hdr51"]
+[ext_resource type="AudioStream" uid="uid://d1rw2v181t1u0" path="res://Sound/Character/sound_get_prime_part.ogg" id="20_cjwsl"]
+[ext_resource type="AudioStream" uid="uid://d0nkss316n6p1" path="res://Sound/Character/sound_part_get.ogg" id="21_qpbn2"]
+[ext_resource type="AudioStream" uid="uid://cs4y2svkrxvje" path="res://Sound/Character/sound_player_jump.ogg" id="22_06j7k"]
+[ext_resource type="AudioStream" uid="uid://bytfexashqjhf" path="res://Sound/Character/sound_player_land.ogg" id="23_cawri"]
+[ext_resource type="AudioStream" uid="uid://d36m0m47q724n" path="res://Sound/Character/sound_player_step_a.ogg" id="24_ffld5"]
+[ext_resource type="AudioStream" uid="uid://yj5jk3cb0w" path="res://Sound/Character/sound_player_step_b.ogg" id="25_l1527"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a58jo"]
 
@@ -336,10 +343,40 @@ shape = SubResource("RectangleShape2D_8wefj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("4_cqb5w")
-animation = &"Idle"
+animation = &"WalkCycle"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_hdr51")
+bus = &"Music"
+
+[node name="PrimePart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_cjwsl")
+bus = &"SFX"
+
+[node name="Part" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_qpbn2")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_06j7k")
+bus = &"SFX"
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_cawri")
+bus = &"SFX"
+
+[node name="Step_A" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_ffld5")
+bus = &"SFX"
+
+[node name="Step_B" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_l1527")
+bus = &"SFX"
 
 [connection signal="pressed" from="Camera2D/SubmitButton" to="Camera2D/Leaderboard" method="_on_submit_button_pressed"]
+[connection signal="pressed" from="Camera2D/TitleScreen/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Camera2D/TitleScreen/Button" to="Camera2D/TitleScreen" method="_on_button_pressed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="finished" from="Music" to="." method="_on_audio_stream_player_finished"]

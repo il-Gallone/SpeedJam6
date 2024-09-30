@@ -8,6 +8,7 @@ enum upgradeType {SPEED, JUMP, BATTERY, REFILL, PRIME, CORPSE}
 var type
 
 func OnPickup(player):
+	PlayAudio(player)
 	if type == upgradeType.SPEED:
 		player.maxSpeed += upgradeAmount
 		player.speedParts += 1
@@ -40,3 +41,9 @@ func GraveRobbing(player):
 	
 func Disable():
 	$CollisionShape2D.disabled = true
+
+func PlayAudio(player):
+	if type == upgradeType.PRIME:
+		player.find_child("PrimePart").play()
+	else:
+		player.find_child("Part").play()

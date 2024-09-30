@@ -7,3 +7,7 @@ func _ready() -> void:
 	
 func DamagePlayer(player) -> void:
 	player.battery -= damage
+	PlayAudio()
+	
+func PlayAudio() -> void:
+	self.find_child("AudioStreamPlayer").play()
