@@ -329,3 +329,9 @@ scale = Vector2(0.5, 0.5)
 
 [node name="Battery Part8" parent="." instance=ExtResource("5_qjlet")]
 position = Vector2(9300, 1340)
+
+[node name="Jump Part8" parent="." instance=ExtResource("6_ta4sf")]
+position = Vector2(6050, 260)
+
+[node name="Jump Part9" parent="." instance=ExtResource("6_ta4sf")]
+position = Vector2(6050, 260)
